@@ -50,10 +50,11 @@
   <body class="login-page bg-body-secondary">
     <div class="login-box">
       <div class="login-logo">
-        <a href="../index2.html"><b>Admin</b>LTE</a>
+        <a href=""><b>Admin</b>LTE</a>
       </div>
       <!-- /.login-logo -->
       <div class="card">
+        @include('_message')
         <div class="card-body login-card-body">
           <p class="login-box-msg">Sign in to start your session</p>
           <form action="" method="post">

@@ -43,6 +43,7 @@
     <!--end::Third Party Plugin(Bootstrap Icons)-->
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="../../../dist/css/adminlte.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--end::Required Plugin(AdminLTE)-->
   </head>
   <!--end::Head-->
@@ -56,19 +57,28 @@
       <div class="card">
         <div class="card-body login-card-body">
           <p class="login-box-msg">Register</p>
-          <form action="" method="post">
+          <form action="{{url('register_post')}}" method="post">
+            {{csrf_field()}}
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="User" />
+                <input type="text" class="form-control" placeholder="Name" name="name" value="{{old('name')}}"/>
                 <div class="input-group-text"><span class="bi bi-user"></span></div>
               </div>
+              <span style="color:red;">{{$errors->first('name')}}</span>
             <div class="input-group mb-3">
-              <input type="email" class="form-control" placeholder="Email" />
+              <input type="email" class="form-control" placeholder="Email" name="email" value="{{old('email')}}" />
               <div class="input-group-text"><span class="bi bi-user"></span></div>
             </div>
+            <span style="color:red;">{{$errors->first('email')}}</span>
             <div class="input-group mb-3">
-              <input type="password" class="form-control" placeholder="Password" />
+              <input type="password" class="form-control" placeholder="Password" name=" password"/>
               <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
             </div>
+            <span style="color:red;">{{$errors->first('password')}}</span>
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password"/>
+                <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
+              </div>
+              <span style="color:red;">{{$errors->first('confirm_password')}}</span>
             <!--begin::Row-->
             <div class="row">
               <div class="col-8">
