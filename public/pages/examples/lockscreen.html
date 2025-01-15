@@ -3,10 +3,10 @@
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Human-Resource | Forgot Password</title>
+    <title>AdminLTE 4 | Lockscreen</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="title" content="AdminLTE 4 | Login Page" />
+    <meta name="title" content="AdminLTE 4 | Lockscreen" />
     <meta name="author" content="ColorlibHQ" />
     <meta
       name="description"
@@ -44,53 +44,47 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="../../../dist/css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <!--end::Head-->
   <!--begin::Body-->
-  <body class="login-page bg-body-secondary">
-    <div class="login-box">
-      <div class="login-logo">
+  <body class="lockscreen bg-body-secondary">
+    <div class="lockscreen-wrapper">
+      <div class="lockscreen-logo">
         <a href="../index2.html"><b>Admin</b>LTE</a>
       </div>
-      <!-- /.login-logo -->
-      <div class="card">
-        <div class="card-body login-card-body">
-          <p class="login-box-msg">Forgot Password</p>
-          <form action="" method="post">
-            <div class="input-group mb-3">
-              <input type="email" class="form-control" placeholder="Email" />
-              <div class="input-group-text"><span class="bi bi-envelope"></span></div>
-            </div>
-            
-            <!--begin::Row-->
-            <div class="row">
-              <div class="col-8">
-                <div class="form-check">
-                  
-                </div>
-              </div>
-              <!-- /.col -->
-              <div class="col-4">
-                <div class="d-grid gap-2">
-                  <button type="submit" class="btn btn-primary">Sign In</button>
-                </div>
-              </div>
-              <!-- /.col -->
-            </div>
-            <!--end::Row-->
-          </form>
-      
-          <!-- /.social-auth-links -->
-          <p class="mb-1"><a href="{{url('/')}}">Sign</a></p>
-          <p class="mb-0">
-            <a href="{{url('register')}}" class="text-center"> Register a new membership </a>
-          </p>
+      <div class="lockscreen-name">John Doe</div>
+      <div class="lockscreen-item">
+        <div class="lockscreen-image">
+          <img src="../../../dist/assets/img/user1-128x128.jpg" alt="User Image" />
         </div>
-        <!-- /.login-card-body -->
+        <form class="lockscreen-credentials">
+          <div class="input-group">
+            <input type="password" class="form-control shadow-none" placeholder="password" />
+            <div class="input-group-text border-0 bg-transparent px-1">
+              <button type="button" class="btn shadow-none">
+                <i class="bi bi-box-arrow-right text-body-secondary"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="help-block text-center">Enter your password to retrieve your session</div>
+      <div class="text-center">
+        <a href="login.html" class="text-decoration-none">Or sign in as a different user</a>
+      </div>
+      <div class="lockscreen-footer text-center">
+        Copyright © 2014-2024 &nbsp;
+        <b
+          ><a
+            href="https://adminlte.io"
+            class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+            >AdminLTE.io</a
+          ></b
+        >
+        <br />
+        All rights reserved
       </div>
     </div>
-    <!-- /.login-box -->
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <script
       src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.10.1/browser/overlayscrollbars.browser.es6.min.js"
@@ -110,7 +104,7 @@
       crossorigin="anonymous"
     ></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
-    <script src="dist/js/adminlte.js"></script>
+    <script src="undefined/js/adminlte.js"></script>
     <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
     <script>
       const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
@@ -133,7 +127,6 @@
       });
     </script>
     <!--end::OverlayScrollbars Configure-->
-    <!--end::Script-->
   </body>
   <!--end::Body-->
 </html>

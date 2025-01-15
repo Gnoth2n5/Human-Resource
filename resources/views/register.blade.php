@@ -43,6 +43,7 @@
     <!--end::Third Party Plugin(Bootstrap Icons)-->
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="../../../dist/css/adminlte.css" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--end::Required Plugin(AdminLTE)-->
   </head>
@@ -63,9 +64,9 @@
                 <input type="text" class="form-control" placeholder="Name" name="name" value="{{old('name')}}"/>
                 <div class="input-group-text"><span class="bi bi-user"></span></div>
               </div>
-              <span style="color:red;">{{$errors->first('name')}}</span>
+              <span style="color:red;" class="duplicate_message">{{$errors->first('name')}}</span>
             <div class="input-group mb-3">
-              <input type="email" class="form-control" placeholder="Email" name="email" value="{{old('email')}}" />
+              <input type="email" class="form-control" placeholder="Email" name="email" value="{{old('email')}}" onblur="duplicateEmail(this)" />
               <div class="input-group-text"><span class="bi bi-user"></span></div>
             </div>
             <span style="color:red;">{{$errors->first('email')}}</span>
@@ -126,7 +127,7 @@
       crossorigin="anonymous"
     ></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
-    <script src="../../../dist/js/adminlte.js"></script>
+    <script src="dist/js/adminlte.js"></script>
     <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
     <script>
       const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
@@ -150,6 +151,30 @@
     </script>
     <!--end::OverlayScrollbars Configure-->
     <!--end::Script-->
+  <script type="text/javascript">
+  function duplicateEmail(element){
+    var email = $(element).val();
+    $.ajax({
+      type:"POST",
+      url:'{{ url('checkemail')}}',
+      data:{
+        email: email,
+        _token: '{{ csrf_token() }}'
+      },
+      dataType: 'json',
+      success: function(res){
+        if(res.extists){
+          $('.duplicate_message').html("Email đã tồn tại.Thử lại");
+        }else{
+          $('.duplicate_message').html("");
+        }
+      },
+      error:function(jqXHR,exception){
+
+      }
+    })
+  }
+  </script>
   </body>
   <!--end::Body-->
 </html>
