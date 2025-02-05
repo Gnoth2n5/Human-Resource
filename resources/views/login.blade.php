@@ -31,15 +31,22 @@
             @include('_message')
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
-                <form action="" method="post">
+
+                <form action="{{ url('login_post') }}" method="post">
+
+                    {{ csrf_field() }}
+
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email" />
+                        <input type="email" name="email" class="form-control" placeholder="Email" />
                         <div class="input-group-text"><span class="bi bi-envelope"></span></div>
                     </div>
+                    <span style=" color: red;">{{$errors->first('email')}}</span>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control pass" placeholder="Password" />
+                        <input type="password" name="password" class="form-control pass" placeholder="Password" />
                         <div class="input-group-text"><span class="bi bi-lock-fill" style="cursor: pointer;"></span></div>
                     </div>
+                    <span style=" color: red;">{{$errors->first('password')}}</span>
+                    
                     <!--begin::Row-->
                     <div class="row">
                         <div class="col-8">
