@@ -152,7 +152,7 @@
                     }
                 },
                 error: function(jqXHR, exception) {
-
+                  console.log(jqXHR);
                 }
             })
         }
