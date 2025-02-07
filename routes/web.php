@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\EmployeesController;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+
 >>>>>>> Stashed changes
 
 /*
@@ -34,7 +38,14 @@ Route::post('login_post',[AuthController::class,'login_post']);
 
 Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/dashboard', [DashboardController::class, 'dashboard']);
+<<<<<<< Updated upstream
     Route::get('admin/employees',[EmployeesController::class,'index']);
+=======
+    Route::get('admin/employees',[EmployeesController::class, 'index']);
+    Route::get('admin/employees/add',[EmployeesController::class, 'add']);
+    Route::post('admin/employees/add',[EmployeesController::class, 'add_post']);
+
+>>>>>>> Stashed changes
   
 });
 
