@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Request;
 
 class User extends Authenticatable
 {
@@ -41,4 +42,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    static public function getRecord()
+    {
+        // $return=self::select('users.*')->orderBy('id','desc')->paginate(20);
+        // return $return;
+        $return = self::select('users.*');
+        //search box start
+        if (!empty(Request::get('id'))) {
+            $return = $return->where('id', '=', Request::get('id'));
+        }
+
+        if (!empty(Request::get('name'))) {
+            $return = $return->where('name', 'like', '%' . Request::get('name') . '%');
+        }
+
+        if (!empty(Request::get('last_name'))) {
+            $return = $return->where('last_name', 'like', '%' . Request::get('last_name') . '%');
+        }
+        if (!empty(Request::get('email'))) {
+            $return = $return->where('email', 'like', '%' . Request::get('email') . '%');
+        }
+        //search box end
+        $return = $return->orderBy('id', 'desc')->paginate(20);
+        return $return;
+
+    }
 }
