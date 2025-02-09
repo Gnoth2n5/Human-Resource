@@ -18,13 +18,15 @@ class EmployeesController extends Controller
     public function add_post(Request $request){
         $user = request()->validate([
             'name'=>'required',
+            'last_name'=>'required',
             'email'=>'required|unique:users',
             'hire_date'=>'required',
             'job_id'=>'required',
-            'salary'=>'required',
-            'commission_pct'=>'required',
+            'salary'=>'required|numeric|min:0.01',
+            'commission_pct'=>'required|numeric|min:0',
             'manager_id'=>'required',
             'department_id'=>'required',
+            'phone_number'=>'required'
         ]);
         $user=new User;
         $user->name=trim($request->name);
@@ -52,7 +54,16 @@ class EmployeesController extends Controller
     }
     public function edit_update ($id, Request $request){
         $request->validate([
-            'email' => 'required|unique:users,email,'.$id
+            'email' => 'required|unique:users,email,'.$id,
+            'name'=>'required',
+            'last_name'=>'required',
+            'hire_date'=>'required',
+            'job_id'=>'required',
+            'salary'=>'required|numeric|min:0.01',
+            'commission_pct'=>'required|numeric|min:0',
+            'manager_id'=>'required',
+            'department_id'=>'required',
+            'phone_number'=>'required'
         ]);
         
         $user = User::find($id);

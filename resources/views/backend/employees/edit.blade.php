@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Add Employees</h1>
+            <h1 class="m-0">Edit Employees</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -26,7 +26,7 @@
                 <div class="col-md-12">
                     <div class="card card-info">
                         <div class="card-header">
-                            <h3 class="card-title">Thêm nhân sự</h3>
+                            <h3 class="card-title">Sửa nhân sự</h3>
                         </div>
                         <form  class="form-horizontai" method="post" action="{{url('admin/employees/edit/'.$getRecord->id)}}" enctype="multipart/form-data">
                             {{csrf_field()}}
