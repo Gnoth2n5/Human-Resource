@@ -11,57 +11,13 @@
           <div class="col-sm-6">
             <h1 class="m-0">Employees</h1>
           </div><!-- /.col -->
-<<<<<<< Updated upstream
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Employees </li>
-            </ol>
-=======
           <div class="col-sm-6" style="text-align: right">
             <a href="{{url('admin/employees/add')}}" class="btn btn-primary">Thêm</a>
->>>>>>> Stashed changes
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-<<<<<<< Updated upstream
-</div>
-<!-- /.content-wrapper -->
-<section class="content">
-    <div class="container-fluid">
-        @include('_message')
-        <div class="row">
-            <section class="col-lg-12">
-                <div class="card">
-                    <div class="card-header">
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Họ</th>
-                                    <th>Tên</th>
-                                    <th>Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                     <td>John Doe</td>
-                                     <td>Doe</td>
-                                     <td>john.doe@example.com</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-</section>
-
-=======
 
 <section class="content">
     <div class="container-fluid">
@@ -129,9 +85,9 @@
                           <td>{{$value->email}}</td>
                           <td>{{!empty($value->is_role)?'HR':'Nhân viên'}}</td>
                           <td>
-                            <a href="" class="btn btn-info">View</a>
-                            <a href="" class="btn btn-primary">Edit</a>
-                            <a href="" class="btn btn-danger">Delete</a>
+                            <a href="{{url('admin/employees/view/'.$value->id)}}" class="btn btn-info">View</a>
+                            <a href="{{url('admin/employees/edit/'.$value->id)}}" class="btn btn-primary">Edit</a>
+                            <a href="{{url('admin/employees/delete/'.$value->id)}}" onclick="return confirm('Bạn có chắc muốn xóa')" class="btn btn-danger">Delete</a>
                           </td>
                           
                         </tr>
@@ -155,5 +111,4 @@
 </section>
 </div>
 <!-- /.content-wrapper -->
->>>>>>> Stashed changes
 @endsection
