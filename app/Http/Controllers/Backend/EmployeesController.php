@@ -3,18 +3,12 @@
 namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-<<<<<<< Updated upstream
-=======
 use App\Models\User;
->>>>>>> Stashed changes
 
 class EmployeesController extends Controller
 {
     public function index(Request $request)
     {
-<<<<<<< Updated upstream
-        return view('backend.employees.list');
-=======
         $data['getRecord']= User::getRecord();
         return view('backend.employees.list',$data);
     }
@@ -50,7 +44,6 @@ class EmployeesController extends Controller
 
 
 
->>>>>>> Stashed changes
     }
 }
 
