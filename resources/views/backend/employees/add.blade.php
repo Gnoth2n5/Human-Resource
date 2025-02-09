@@ -32,14 +32,14 @@
                             {{csrf_field()}}
                         <div class="card-body">
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-lable">Họ <span style="color: red">*</span></label>
+                                <label class="col-sm-2 col-form-lable">Tên <span style="color: red">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text" value="{{old('name')}}" name="name" class="form-cpntrol" required placeholder="Nhập họ">
 
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-lable">Tên <span style="color: red"></span></label>
+                                <label class="col-sm-2 col-form-lable">Họ <span style="color: red">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="text"value="{{old('last_name')}}" name="last_name" class="form-cpntrol" placeholder="Nhập tên">
                                     
