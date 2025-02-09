@@ -3,18 +3,12 @@
 namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-<<<<<<< Updated upstream
-=======
 use App\Models\User;
->>>>>>> Stashed changes
 
 class EmployeesController extends Controller
 {
     public function index(Request $request)
     {
-<<<<<<< Updated upstream
-        return view('backend.employees.list');
-=======
         $data['getRecord']= User::getRecord();
         return view('backend.employees.list',$data);
     }
@@ -46,13 +40,7 @@ class EmployeesController extends Controller
         $user->is_role=0;
         $user->save();
         return redirect('admin/employees')->with('success','Employees thêm thành công');
-<<<<<<< Updated upstream
 
-
-
-
->>>>>>> Stashed changes
-=======
     }
     public function view($id){
         $data['getRecord']=User::find($id);
@@ -88,7 +76,7 @@ class EmployeesController extends Controller
         $recordDelete= User::find($id);
         $recordDelete->delete();
         return redirect()->back()->with('error','Employees xóa thành công');
->>>>>>> Stashed changes
+
     }
 }
 
