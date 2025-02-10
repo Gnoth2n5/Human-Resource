@@ -50,8 +50,8 @@
                             <input type="text" class="form-control" name="email"value="{{Request()->email}}" placeholder="email">
                           </div>
                           <div class="form-group col-md-3">
-                            <button class="btn btn-primary" type="submit" style="margin-top: 30px">Tìm kiếm</button>
-                            <a href="{{'employees'}}" class="btn btn-success" style="margin-top: 30px">Khôi phục</a>
+                            <button class="btn btn-primary" type="submit" style="margin-top: 15px">Tìm kiếm</button>
+                            <a href="{{'employees'}}" class="btn btn-success" style="margin-top: 15px">Khôi phục</a>
                           </div>
                         </div>
                       </div>
