@@ -31,6 +31,12 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
+@php
+  $path = \parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+  $segments = \explode('/', trim($path, '/'));
+@endphp
+
 
 @include('backend.layouts._sidebar')
 
