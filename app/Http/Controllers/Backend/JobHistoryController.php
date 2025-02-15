@@ -19,10 +19,10 @@ class JobHistoryController extends Controller
     }
 
     public function job_history_export(Request $request)
-{
-    $export = new JobHistoryExport($request);
-    return $export->export();
-}
+    {
+        $export = new JobHistoryExport($request);
+        return $export->export();
+    }
 
 
     public function add()
