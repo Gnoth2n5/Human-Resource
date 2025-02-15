@@ -3,14 +3,12 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\EmployeesController;
-<<<<<<< Updated upstream
-=======
+
 use App\Http\Controllers\Backend\JobsController;
 use App\Http\Controllers\Backend\JobHistoryController;
->>>>>>> Stashed changes
+
 
 
 
@@ -26,6 +24,9 @@ use App\Http\Controllers\Backend\JobHistoryController;
 */
 
 
+
+
+
 Route::get('/',[AuthController::class,'index']);
 Route::get('forgot-password',[AuthController::class,'forgot_password']);
 Route::get('register',[AuthController::class,'register']);
@@ -38,6 +39,9 @@ Route::post('login_post',[AuthController::class,'login_post']);
 
 Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/dashboard', [DashboardController::class, 'dashboard']);
+    Route::get('admin', function () {
+        return redirect('admin/dashboard');
+    });
 
     Route::get('admin/employees',[EmployeesController::class, 'index']);
     Route::get('admin/employees/add',[EmployeesController::class, 'add']);
@@ -47,10 +51,15 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/employees/edit/{id}',[EmployeesController::class, 'edit_update']);
     Route::get('admin/employees/delete/{id}',[EmployeesController::class, 'delete']);
 
+    Route::get('admin/jobs', [JobsController::class, 'index']);
+    Route::get('admin/jobs/add', [JobsController::class, 'add']);
+    Route::post('admin/jobs/add', [JobsController::class, 'add_post']);
+    Route::get('admin/jobs/view/{id}', [JobsController::class, 'view']);
+    Route::get('admin/jobs/edit/{id}', [JobsController::class, 'edit']);
+    Route::post('admin/jobs/edit/{id}', [JobsController::class, 'edit_update']);
+    Route::get('admin/jobs/delete/{id}', [JobsController::class, 'delete']);
 
-<<<<<<< Updated upstream
 
-=======
     Route::get('admin/jobs_export', [JobsController::class, 'jobs_export']);
 
 
@@ -66,7 +75,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/job_history/export', [JobHistoryController::class, 'job_history_export']);
     
     
->>>>>>> Stashed changes
+
   
 });
 
