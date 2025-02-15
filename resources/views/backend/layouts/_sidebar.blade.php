@@ -76,6 +76,25 @@
 
 
 
+          <li class="nav-item">
+            <a href="{{ url('admin/locations') }}" class="nav-link">
+              <i class="nav-icon fa fa-map-marker-alt"></i>
+              <p>
+                Locations
+              </p>
+            </a>
+          </li>
+
+                <li class="nav-item">
+                    <a href="{{ url('admin/job_history') }}" class="nav-link @if (Request::segment(2) == 'job_history') active @endif">
+                        <i class="nav-icon fa fa-history"></i>
+                        <p>
+                            Job History
+                        </p>
+                    </a>
+                </li>
+
+
                 <li class="nav-item">
 
                     <a href="{{ url('admin/dashboard') }}"
