@@ -34,7 +34,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable">Tiêu Đề Việc Làm <span style="color: red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" value="{{old('job_titlle')}}" name="job_titlle" class="form-cpntrol" required placeholder="Nhập Tiêu Đề Việc Làm">
+                                    <input type="text" value="{{old('job_title')}}" name="job_title" class="form-control" required placeholder="Nhập Tiêu Đề Việc Làm">
 
                                 </div>
                             </div>
@@ -42,7 +42,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable">Mức Lương Tối Thiểu<span style="color: red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="number" value="{{old('min_salary')}}" name="min_salary" class="form-cpntrol" required placeholder="Nhập Mức Lương Tối Thiểu">
+                                    <input type="number" value="{{old('min_salary')}}" name="min_salary" class="form-control" required placeholder="Nhập Mức Lương Tối Thiểu">
 
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable">Mức Lương Tối Đa<span style="color: red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="number" value="{{old('max_salary')}}" name="max_salary" class="form-cpntrol" required placeholder="Nhập Mức Lương Tối Đa">
+                                    <input type="number" value="{{old('max_salary')}}" name="max_salary" class="form-control" required placeholder="Nhập Mức Lương Tối Đa">
 
                                 </div>
                             </div>

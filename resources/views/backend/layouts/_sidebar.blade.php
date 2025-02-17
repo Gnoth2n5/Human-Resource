@@ -138,10 +138,28 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ url('admin/job_grades') }}" class="nav-link">
+                    <a href="{{ url('admin/job_grades') }}" class="nav-link @if (Request::segment(2) == 'job_grades') active @endif">
                         <i class="nav-icon fa fa-star"></i>
                         <p>
                             Job Grades
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ url('admin/regions') }}" class="nav-link @if (Request::segment(2) == 'regions') active @endif">
+                        <i class="nav-icon fa fa-asterisk"></i>
+                        <p>
+                            Regions
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ url('admin/countries') }}" class="nav-link @if (Request::segment(2) == 'countries') active @endif">
+                        <i class="nav-icon fa fa-flag"></i>
+                        <p>
+                            Countries
                         </p>
                     </a>
                 </li>
@@ -155,14 +173,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="{{ url('admin/countries') }}" class="nav-link">
-                        <i class="nav-icon fa fa-flag"></i>
-                        <p>
-                            Countries
-                        </p>
-                    </a>
-                </li>
+                
 
                 <li class="nav-item">
                     <a href="{{ url('admin/locations') }}" class="nav-link">
@@ -173,14 +184,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="{{ url('admin/regions') }}" class="nav-link">
-                        <i class="nav-icon fa fa-asterisk"></i>
-                        <p>
-                            Regions
-                        </p>
-                    </a>
-                </li>
+                
 
 
 
