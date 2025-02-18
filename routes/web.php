@@ -73,21 +73,16 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/job_history/edit/{id}', [JobHistoryController::class, 'edit']);
     Route::post('admin/job_history/edit/{id}', [JobHistoryController::class, 'edit_update']);
     Route::get('admin/job_history/delete/{id}', [JobHistoryController::class, 'delete']);
-<<<<<<< Updated upstream
+
     Route::get('admin/job_history/export', [JobHistoryController::class, 'job_history_export']);
-=======
 
-
-    
-    Route::get('admin/job_history_export', [JobHistoryController::class, 'job_history_export']);
 
     Route::get('admin/job_grades', [JobGradesController::class, 'index']);
 
     Route::get('admin/job_grades/add', [JobGradesController::class, 'add']);
 
     Route::post('admin/job_grades/add', [JobGradesController::class, 'add_post']);
->>>>>>> Stashed changes
-    
+
     Route::get('admin/job_grades/edit/{id}', [JobGradesController::class, 'edit']);
 
     Route::post('admin/job_grades/edit/{id}', [JobGradesController::class, 'edit_update']);
