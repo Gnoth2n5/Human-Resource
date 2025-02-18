@@ -34,7 +34,7 @@ class JobsController extends Controller
         // dd($request->all());
 
         $user = request()->validate([
-            'job_titlle' => 'required',
+            'job_title' => 'required',
             'min_salary' => 'required',
             'max_salary' => 'required',
 
@@ -64,7 +64,7 @@ class JobsController extends Controller
     {
 
         $user = request()->validate([
-            'job_titlle' => 'required',
+            'job_title' => 'required',
             'min_salary' => 'required',
             'max_salary' => 'required',
 
