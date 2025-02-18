@@ -1,48 +1,60 @@
 <?php
 
 namespace App\Exports;
+
 use App\Models\LocationsModel;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Maatwebsite\Excel\Concerns\WithMapping;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Request;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Illuminate\Support\Facades\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class LocationsExport implements FromCollection, ShouldAutoSize, WithMapping, WithHeadings{
-
-    public function collection(){
+class LocationsExport
+{
+    public function export()
+    {
         $request = Request::all();
-        return LocationsModel::getRecord($request);
-    }
+        $locations = LocationsModel::getRecord($request);
 
-    protected $index = 0;
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
 
-    public function map($user): array{
-        $cretedAtFormat = date('d-m-Y', strtotime($user->created_at));
+        // Thêm tiêu đề cột
+        $headings = ['S.No', 'Table ID', 'Vị trí đường', 'Mã Bưu Điện', 'Thành phố', 'Tỉnh', 'Quốc gia', 'Created At'];
+        $sheet->fromArray([$headings], null, 'A1');
 
-        return[
-            ++$this->index,
-            $user->id,
-            $user->street_address,
-            $user->postal_code,
-            $user->city,
-            $user->state_province,
-            $user->country_name,
-            $cretedAtFormat,
-        ];
-    }
-    
-    public function headings(): array{
-        return[
-            'S.No',
-            'Table ID',
-            'Vị trí đường',
-            'Mã Bưu Điện',
-            'Thành phố',
-            'Tỉnh',
-            'Quốc gia',
-            'Created At',
-        ];
+        $row = 2;
+        $index = 1;
+
+        foreach ($locations as $location) {
+            $createdAtFormat = date('d-m-Y', strtotime($location->created_at));
+
+            $data = [
+                $index++,
+                $location->id,
+                $location->street_address,
+                $location->postal_code,
+                $location->city,
+                $location->state_province,
+                $location->country_name,
+                $createdAtFormat
+            ];
+            $sheet->fromArray([$data], null, "A$row");
+            $row++;
+        }
+
+        // Tự động điều chỉnh kích thước cột
+        foreach (range('A', $sheet->getHighestColumn()) as $col) {
+            $sheet->getColumnDimension($col)->setAutoSize(true);
+        }
+
+        // Xuất file
+        return new StreamedResponse(function () use ($spreadsheet) {
+            $writer = new Xlsx($spreadsheet);
+            $writer->save('php://output');
+        }, 200, [
+            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'Content-Disposition' => 'attachment;filename="locations.xlsx"',
+            'Cache-Control' => 'max-age=0'
+        ]);
     }
 }
-?>

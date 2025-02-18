@@ -3,49 +3,57 @@
 namespace App\Exports;
 
 use App\Models\DepartmentsModel;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Maatwebsite\Excel\Concerns\WithMapping;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Request;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Illuminate\Support\Facades\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class DepartmentsExport implements FromCollection, ShouldAutoSize, WithMapping, WithHeadings
+class DepartmentsExport
 {
-    public function collection()
+    public function export()
     {
         $request = Request::all();
-        return DepartmentsModel::getRecord($request);
-    }
+        $departments = DepartmentsModel::getRecord($request);
 
-    protected $index = 0;
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
 
-    public function map($user): array
-    {
-        if ($user->manager_id == 1) {
-            $manager_id = 'Thông';
-        } else {
-            $manager_id = 'Thông 2';
+        // Thêm tiêu đề cột
+        $headings = ['S.No', 'Table ID', 'Tên phòng', 'Tên quản lý', 'Vị trí', 'Ngày tạo'];
+        $sheet->fromArray([$headings], null, 'A1');
+
+        $row = 2;
+        $index = 1;
+
+        foreach ($departments as $department) {
+            $manager_id = ($department->manager_id == 1) ? 'Thông' : 'Thông 2';
+            $created_at_Formate = date('d-m-Y', strtotime($department->created_at));
+
+            $data = [
+                $index++,
+                $department->id,
+                $department->department_name,
+                $manager_id,
+                $department->street_address,
+                $created_at_Formate
+            ];
+            $sheet->fromArray([$data], null, "A$row");
+            $row++;
         }
-        $created_at_Formate = date('d-m-Y', strtotime($user->created_at));
 
-        return [
-            ++$this->index,
-            $user->id,
-            $user->department_name,
-            $user->manager_id,
-            $user->street_address,
-            $created_at_Formate
-        ];
+        // Tự động điều chỉnh kích thước cột
+        foreach (range('A', $sheet->getHighestColumn()) as $col) {
+            $sheet->getColumnDimension($col)->setAutoSize(true);
+        }
+
+        // Xuất file
+        return new StreamedResponse(function () use ($spreadsheet) {
+            $writer = new Xlsx($spreadsheet);
+            $writer->save('php://output');
+        }, 200, [
+            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'Content-Disposition' => 'attachment;filename="departments.xlsx"',
+            'Cache-Control' => 'max-age=0'
+        ]);
     }
-    public function headings(): array {
-        return [
-            'S.No',
-            'Table ID',
-            'Tên phòng',
-            'Tên quản lý',
-            'Vị trí',
-            'Ngày tạo'
-        ];
-    }
-    
 }

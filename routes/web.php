@@ -7,9 +7,6 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\EmployeesController;
 
-<<<<<<< Updated upstream
-
-=======
 use App\Http\Controllers\Backend\JobsController;
 use App\Http\Controllers\Backend\JobHistoryController;
 use App\Http\Controllers\Backend\JobGradesController;
@@ -18,7 +15,6 @@ use App\Http\Controllers\Backend\CountriesController;
 use App\Http\Controllers\Backend\LocationController;
 use App\Http\Controllers\Backend\DepartmentsController;
 use App\Http\Controllers\Backend\ManagerController;
->>>>>>> Stashed changes
 
 /*
 |--------------------------------------------------------------------------
@@ -55,8 +51,6 @@ Route::group(['middleware' => 'admin'], function () {
 
 
 
-<<<<<<< Updated upstream
-=======
     Route::get('admin/jobs_export', [JobsController::class, 'jobs_export']);
 
 
@@ -126,7 +120,6 @@ Route::group(['middleware' => 'admin'], function () {
 
 
 
->>>>>>> Stashed changes
   
 });
 
