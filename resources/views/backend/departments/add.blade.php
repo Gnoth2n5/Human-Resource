@@ -34,8 +34,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable">Tên phòng <span style="color: red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" value="{{old('department_name')}}" name="department_name" class="form-cpntrol" required placeholder="Nhập tên phòng">
-
+                                    <input type="text" value="{{old('department_name')}}" name="department_name" class="form-control" required placeholder="Nhập tên phòng">
+                                    <span style="color: red">{{ $errors->first('department_name') }}</span>
                                 </div>
                             </div>
 
@@ -52,6 +52,8 @@
                                                               
                                    </select>
                                 </div>
+                                <span style="color: red">{{ $errors->first('manager_id') }}</span>
+
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable"> Vị trí <span style="color: red">*</span></label>
@@ -64,6 +66,7 @@
                                                               
                                    </select>
                                 </div>
+                                <span style="color: red">{{ $errors->first('locations_id') }}</span>
                             </div>
 
 

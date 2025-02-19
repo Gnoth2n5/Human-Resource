@@ -14,7 +14,8 @@ class DepartmentsController extends Controller
         return view('backend.departments.list',$data);
     }
     public function departments_export(Request $request) {
-        return Excel::download(new DepartmentsExport, 'departments.xlsx');
+        $export = new DepartmentsExport($request);
+        return $export->export();
     }
     
     public function add(Request $request){

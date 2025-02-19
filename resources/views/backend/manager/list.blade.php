@@ -49,7 +49,7 @@
                                     <input type="number" name="manager_mobile" class="form-control" placeholder="Enter Manager Email">  
                                 </div>
                                 <div class="form-group col-md-2">  
-                                    <button class="btn btn-primary" type="submit" style="magin-top: 30px;">Search</button>  
+                                    <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Search</button>  
                                     <a href="{{ url('admin/manager') }}" class="btn btn-success" style="margin-top: 30px;">Reset</a>  
                                 </div>
                                 
@@ -62,7 +62,7 @@
                         @include('_message')
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Danh Sách Quản Lý/h3>
+                                <h3 class="card-title">Danh Sách Quản Lý</h3>
                             </div>
                             <div class="card-body p-0">
                                 <table class="table table-striped">
