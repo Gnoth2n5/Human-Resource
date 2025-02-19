@@ -65,7 +65,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-lable">job ID <span style="color: red"></span></label>
                                     <div class="col-sm-10">
-                                        {{$getRecord->job_id}}
+                                        {{ !empty($getRecord->get_job_single->job_titlle) ? $getRecord->get_job_single->job_titlle : '' }}
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -101,7 +101,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-lable">Ngày sửa <span style="color: red"></span></label>
                                     <div class="col-sm-10">
-                                        {{date('d-m-Y H:i A',strtotime($getRecord->update_at))}}
+                                        {{date('d-m-Y H:i A',strtotime($getRecord->updated_at))}}
                                     </div>
                                 </div>
                                 <div class="form-group row">

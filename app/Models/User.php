@@ -66,4 +66,8 @@ class User extends Authenticatable
         return $return;
 
     }
+
+    public function get_job_single(){
+        return $this->belongsTo(JobsModel::class, "job_id");
+    }
 }

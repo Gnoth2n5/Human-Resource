@@ -3,7 +3,6 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\EmployeesController;
 
@@ -12,6 +11,7 @@ use App\Http\Controllers\Backend\JobHistoryController;
 use App\Http\Controllers\Backend\JobGradesController;
 use App\Http\Controllers\Backend\RegionsController;
 use App\Http\Controllers\Backend\CountriesController;
+
 use App\Http\Controllers\Backend\LocationController;
 use App\Http\Controllers\Backend\DepartmentsController;
 use App\Http\Controllers\Backend\ManagerController;
@@ -28,6 +28,9 @@ use App\Http\Controllers\Backend\ManagerController;
 */
 
 
+
+
+
 Route::get('/',[AuthController::class,'index']);
 Route::get('forgot-password',[AuthController::class,'forgot_password']);
 Route::get('register',[AuthController::class,'register']);
@@ -40,6 +43,9 @@ Route::post('login_post',[AuthController::class,'login_post']);
 
 Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/dashboard', [DashboardController::class, 'dashboard']);
+    Route::get('admin', function () {
+        return redirect('admin/dashboard');
+    });
 
     Route::get('admin/employees',[EmployeesController::class, 'index']);
     Route::get('admin/employees/add',[EmployeesController::class, 'add']);
@@ -49,6 +55,13 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/employees/edit/{id}',[EmployeesController::class, 'edit_update']);
     Route::get('admin/employees/delete/{id}',[EmployeesController::class, 'delete']);
 
+    Route::get('admin/jobs', [JobsController::class, 'index']);
+    Route::get('admin/jobs/add', [JobsController::class, 'add']);
+    Route::post('admin/jobs/add', [JobsController::class, 'add_post']);
+    Route::get('admin/jobs/view/{id}', [JobsController::class, 'view']);
+    Route::get('admin/jobs/edit/{id}', [JobsController::class, 'edit']);
+    Route::post('admin/jobs/edit/{id}', [JobsController::class, 'edit_update']);
+    Route::get('admin/jobs/delete/{id}', [JobsController::class, 'delete']);
 
 
     Route::get('admin/jobs_export', [JobsController::class, 'jobs_export']);
@@ -65,6 +78,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/job_history/delete/{id}', [JobHistoryController::class, 'delete']);
 
     Route::get('admin/job_history/export', [JobHistoryController::class, 'job_history_export']);
+
 
 
     Route::get('admin/job_grades', [JobGradesController::class, 'index']);
@@ -95,7 +109,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/countries/edit/{id}', [CountriesController::class, 'edit_update']);
     Route::get('admin/countries/delete/{id}', [CountriesController::class, 'delete']);
     Route::get('admin/countries_export', [CountriesController::class, 'countries_export']);
-    
+
     Route::get('admin/locations', [LocationController::class, 'index']);
     Route::get('admin/locations/add', [LocationController::class, 'add']);
     Route::post('admin/locations/add', [LocationController::class, 'add_post']);
@@ -119,9 +133,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/manager/delete/{id}', [ManagerController::class, 'delete']);
 
 
-
   
 });
 
 Route::get('logout', [AuthController::class, 'logout']);
-

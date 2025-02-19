@@ -31,6 +31,12 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
+@php
+  $path = \parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+  $segments = \explode('/', trim($path, '/'));
+@endphp
+
 
 @include('backend.layouts._sidebar')
 
@@ -74,7 +80,7 @@
 <script src="{{ asset('backend/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
 <!-- daterangepicker -->
 <script src="{{ asset('backend/plugins/moment/moment.min.js') }}"></script>
-<script src="{{ asset('backend/plugins/daterangepicker/daterangepicker.js"') }}'></script>
+<script src="{{ asset('backend/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{ asset('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 <!-- Summernote -->
