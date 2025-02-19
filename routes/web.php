@@ -12,6 +12,9 @@ use App\Http\Controllers\Backend\JobGradesController;
 use App\Http\Controllers\Backend\RegionsController;
 use App\Http\Controllers\Backend\CountriesController;
 
+use App\Http\Controllers\Backend\LocationController;
+use App\Http\Controllers\Backend\DepartmentsController;
+use App\Http\Controllers\Backend\ManagerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,6 +80,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/job_history/export', [JobHistoryController::class, 'job_history_export']);
 
 
+
     Route::get('admin/job_grades', [JobGradesController::class, 'index']);
 
     Route::get('admin/job_grades/add', [JobGradesController::class, 'add']);
@@ -105,7 +109,29 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/countries/edit/{id}', [CountriesController::class, 'edit_update']);
     Route::get('admin/countries/delete/{id}', [CountriesController::class, 'delete']);
     Route::get('admin/countries_export', [CountriesController::class, 'countries_export']);
-    
+
+    Route::get('admin/locations', [LocationController::class, 'index']);
+    Route::get('admin/locations/add', [LocationController::class, 'add']);
+    Route::post('admin/locations/add', [LocationController::class, 'add_post']);
+    Route::get('admin/locations/edit/{id}', [LocationController::class, 'edit']);
+    Route::post('admin/locations/edit/{id}', [LocationController::class, 'edit_update']);
+    Route::get('admin/locations/delete/{id}', [LocationController::class, 'delete']);
+    Route::get('admin/locations_export', [LocationController::class, 'locations_export']);
+
+    Route::get('admin/departments', [DepartmentsController::class, 'index']);
+    Route::get('admin/departments/add', [DepartmentsController::class, 'add']);
+    Route::post('admin/departments/add', [DepartmentsController::class, 'add_post']);
+    Route::get('admin/departments/edit/{id}', [DepartmentsController::class, 'edit']);
+    Route::post('admin/departments/edit/{id}', [DepartmentsController::class, 'edit_update']);
+    Route::get('admin/departments/delete/{id}', [DepartmentsController::class, 'delete']);
+    Route::get('admin/departments_export', [DepartmentsController::class, 'departments_export']);
+    Route::get('admin/manager', [ManagerController::class, 'index']);
+    Route::get('admin/manager/add', [ManagerController::class, 'add']);
+    Route::post('admin/manager/add', [ManagerController::class, 'add_post']);
+    Route::get('admin/manager/edit/{id}', [ManagerController::class, 'edit']);
+    Route::post('admin/manager/edit/{id}', [ManagerController::class, 'edit_update']);
+    Route::get('admin/manager/delete/{id}', [ManagerController::class, 'delete']);
+
 
   
 });
