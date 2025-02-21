@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-lable">Số điện thoaoj <span style="color: red"></span></label>
+                                    <label class="col-sm-2 col-form-lable">Số điện thoại <span style="color: red"></span></label>
                                     <div class="col-sm-10">
                                         {{$getRecord->phone_number}}
                                     </div>
@@ -81,15 +81,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-lable">ID quản lý <span style="color: red"></span></label>
+                                    <label class="col-sm-2 col-form-lable">Tên Quản Lý <span style="color: red"></span></label>
                                     <div class="col-sm-10">
-                                        {{$getRecord->manager_id}}
+                                        {{ !empty($getRecord->get_manager_name_single->manager_name) ? $getRecord->get_manager_name_single->manager_name : '' }}
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-lable">ID Phòng ban <span style="color: red"></span></label>
+                                    <label class="col-sm-2 col-form-lable">Tên Phòng Ban <span style="color: red"></span></label>
                                     <div class="col-sm-10">
-                                        {{$getRecord->department_id}}
+                                        {{ !empty($getRecord->get_departments_name_single->department_name) ? $getRecord->get_departments_name_single->department_name : '' }}
                                     </div>
                                 </div>
                                 <div class="form-group row">

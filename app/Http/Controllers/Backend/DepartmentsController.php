@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\DepartmentsModel;
 use App\Models\LocationsModel;
+use App\Models\ManagerModel;
 use App\Exports\DepartmentsExport;
 class DepartmentsController extends Controller
 {
@@ -19,6 +20,7 @@ class DepartmentsController extends Controller
     }
     
     public function add(Request $request){
+        $data['getManager'] = ManagerModel::get();
         $data['getLocation'] = LocationsModel::get();
         return view('backend.departments.add', $data);
     }
@@ -39,6 +41,7 @@ class DepartmentsController extends Controller
         return redirect('admin/departments')->with('success', 'Departments successfully add');
     }
     public function edit($id, Request $request){
+        $data['getManager'] = ManagerModel::get();
         $data['getRecord'] = DepartmentsModel::find($id);
         $data['getLocation'] = LocationsModel::get();
         return view('backend.departments.edit', $data);

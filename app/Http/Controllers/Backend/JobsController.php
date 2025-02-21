@@ -84,6 +84,6 @@ class JobsController extends Controller
     {
         $recordDelete = JobsModel::find($id);
         $recordDelete->delete();
-        return redirect()->back()->with('error', 'Việc Làm Thành Công Xóa Thành Công');
+        return redirect()->back()->with('error', 'Việc Làm Xóa Thành Công');
     }
 }

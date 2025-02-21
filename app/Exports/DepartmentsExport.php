@@ -26,14 +26,14 @@ class DepartmentsExport
         $index = 1;
 
         foreach ($departments as $department) {
-            $manager_id = ($department->manager_id == 1) ? 'Thông' : 'Thông 2';
+            // $manager_id = ($department->manager_id == 1) ? 'Thông' : 'Thông 2';
             $created_at_Formate = date('d-m-Y', strtotime($department->created_at));
 
             $data = [
                 $index++,
                 $department->id,
                 $department->department_name,
-                $manager_id,
+                $department->manager_name,
                 $department->street_address,
                 $created_at_Formate
             ];

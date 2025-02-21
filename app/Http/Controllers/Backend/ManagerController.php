@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ManagerModel;
+use App\Exports\ManagerExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ManagerController extends Controller
 {
@@ -12,6 +14,11 @@ class ManagerController extends Controller
         $data['getRecord']=ManagerModel::getRecord($request);
         return view('backend.manager.list',$data);
     }
+
+    public function manager_export(Request $request){
+        return Excel::download(new ManagerExport, 'manager.xlsx');
+    }
+
     public function add(Request $request){
         return view('backend.manager.add');
     }

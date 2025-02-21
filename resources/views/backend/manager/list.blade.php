@@ -11,6 +11,14 @@
                         <h1 class="m-0">Quản lý</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6 d-flex justify-content-end">
+
+                        <form action="{{ url('admin/manager_export') }}" method="get">
+                            <input type="hidden" name="start_date" value="{{ Request()->start_date }}">
+                            <input type="hidden" name="end_date" value="{{ Request()->end_date }}">
+
+                            <a href="{{ url('admin/manager_export?start_date=' . Request()->start_date . '&end_date=' . Request()->end_date) }}" class="btn btn-success">Excel Export</a>
+                        </form>
+                        <br>
                         <a href="{{ url('admin/manager/add') }}" class="btn btn-primary mx-2">Thêm quản lý</a>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -30,7 +38,7 @@
                     <form method="get" action="">  
                         <div class="card-body">  
                             <div class="row">  
-                                <div class="form-group col-md-2">  
+                                <div class="form-group col-md-3">  
                                     <label>ID</label>  
                                     <input type="text" name="id" class="form-control" placeholder="Enter ID">  
                                 </div>  
@@ -48,6 +56,17 @@
                                     <label>Manager Mobile</label>  
                                     <input type="number" name="manager_mobile" class="form-control" placeholder="Enter Manager Email">  
                                 </div>
+
+                                <div class="form-group col-md-2">  
+                                    <label>Start Date</label>  
+                                    <input type="date" name="start_date" class="form-control" value="{{ Request()->start_date }}">  
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label>End Date</label>
+                                    <input type="date" name="end_date" class="form-control" value="{{ Request()->end_date }}">  
+                                </div>
+
                                 <div class="form-group col-md-2">  
                                     <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Search</button>  
                                     <a href="{{ url('admin/manager') }}" class="btn btn-success" style="margin-top: 30px;">Reset</a>  
@@ -71,9 +90,9 @@
                                             <th>*</th>
                                             <th>Tên</th>
                                             <th>Email</th>
-                                             <th>Sđt</th>
+                                            <th>Sđt</th>
+                                            <th>Ngày Tạo</th>
                                             <th>Hành động</th>
-
 
                                         </tr>
                                     </thead>
@@ -84,6 +103,7 @@
                                             <td>{{ $value->manager_name }}</td>
                                             <td>{{ $value->manager_email }}</td>
                                             <td>{{ $value->manager_mobile }}</td>
+                                            <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
                                             <td>
                                                 <a href="{{ url('admin/manager/edit/' . $value->id) }}" class="btn btn-primary">Sửa</a>
                                                 <a href="{{ url('admin/manager/delete/' . $value->id) }}" class="btn btn-danger">Xóa</a>

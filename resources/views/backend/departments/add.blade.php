@@ -45,12 +45,13 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable"> Tên quản lý <span style="color: red">*</span></label>
                                 <div class="col-sm-10">
-                                   <select name="manager_id"  class="form-control" required>
+                                  <select name="manager_id"  class="form-control" required>
                                     <option value="">Chọn quản lý</option>
-                                    <option value="1">Thông</option>
-                                    <option value="2">Thông 2</option>
+                                    @foreach ($getManager as $value_m)
+                                      <option value="{{ $value_m->id }}">{{ $value_m->manager_name }}</option>
+                                    @endforeach
                                                               
-                                   </select>
+                                  </select>
                                 </div>
                                 <span style="color: red">{{ $errors->first('manager_id') }}</span>
 

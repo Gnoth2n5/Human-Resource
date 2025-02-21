@@ -50,10 +50,9 @@
                                                 style="color: red">*</span></label>
                                         <div class="col-sm-10">
                                             <select name="manager_id" class="form-control" required>
-                                                <option {{ $getRecord->manager_id == 1 ? 'select' : '' }} value="1">Thông
-                                                </option>
-                                                <option {{ $getRecord->manager_id == 2 ? 'select' : '' }} value="2">Thông
-                                                    2</option>
+                                            @foreach ($getManager as $value_m)
+                                                <option {{ ($value_m->id == $getRecord->manager_id) ? 'selected' : '' }} value="{{ $value_m->id }}">{{ $value_m->manager_name }}</option>
+                                            @endforeach
 
                                             </select>
                                         </div>

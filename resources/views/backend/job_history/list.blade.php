@@ -107,14 +107,9 @@
                                             </td>
                                             <td>{{ date('d-m-Y H:i A', strtotime($value->start_date)) }}</td>
                                             <td>{{ date('d-m-Y H:i A', strtotime($value->end_date)) }}</td>
-                                            <td>{{ !empty($value->get_job_single->job_titlle) ? $value->get_job_single->job_titlle : '' }}
-                                            </td>
+                                            <td>{{ !empty($value->get_job_single->job_titlle) ? $value->get_job_single->job_titlle : '' }}</td>
                                             <td>
-                                                @if (!empty($value->department_id == 1))
-                                                    Dev Department
-                                                @else
-                                                    PDF Department
-                                                @endif
+                                                {{ !empty($value->get_departments_name_single->department_name) ? $value->get_departments_name_single->department_name : '' }}
                                             </td>
                                             <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
                                             <td>

@@ -51,7 +51,7 @@
                                             <input type="number" value="{{old('manager_mobile')}}" name="manager_mobile" class="form-control" required placeholder="Nhập SĐT Quản Lý">
         
                                         </div>
-                            </div>
+                                    </div>
 
                             
 

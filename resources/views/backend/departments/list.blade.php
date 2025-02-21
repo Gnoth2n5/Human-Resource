@@ -107,11 +107,7 @@
                                                             <td>{{ $value->id }}</td>
                                                             <td>{{ $value->department_name }}</td>
                                                             <td>
-                                                                @if ($value->manager_id == 1)
-                                                                    Thông
-                                                                @else
-                                                                    Thông 2
-                                                                @endif
+                                                                {{ $value->manager_name }}
 
                                                             </td>
                                                             <td>{{ $value->street_address }}</td>
