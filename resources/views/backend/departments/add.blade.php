@@ -34,8 +34,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable">Tên phòng <span style="color: red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" value="{{old('department_name')}}" name="department_name" class="form-cpntrol" required placeholder="Nhập tên phòng">
-
+                                    <input type="text" value="{{old('department_name')}}" name="department_name" class="form-control" required placeholder="Nhập tên phòng">
+                                    <span style="color: red">{{ $errors->first('department_name') }}</span>
                                 </div>
                             </div>
 
@@ -45,13 +45,16 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable"> Tên quản lý <span style="color: red">*</span></label>
                                 <div class="col-sm-10">
-                                   <select name="manager_id"  class="form-control" required>
+                                  <select name="manager_id"  class="form-control" required>
                                     <option value="">Chọn quản lý</option>
-                                    <option value="1">Thông</option>
-                                    <option value="2">Thông 2</option>
+                                    @foreach ($getManager as $value_m)
+                                      <option value="{{ $value_m->id }}">{{ $value_m->manager_name }}</option>
+                                    @endforeach
                                                               
-                                   </select>
+                                  </select>
                                 </div>
+                                <span style="color: red">{{ $errors->first('manager_id') }}</span>
+
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable"> Vị trí <span style="color: red">*</span></label>
@@ -64,6 +67,7 @@
                                                               
                                    </select>
                                 </div>
+                                <span style="color: red">{{ $errors->first('locations_id') }}</span>
                             </div>
 
 

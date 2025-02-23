@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Add Jobs</h1>
+            <h1 class="m-0">Add Manager</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -51,7 +51,7 @@
                                             <input type="number" value="{{old('manager_mobile')}}" name="manager_mobile" class="form-control" required placeholder="Nhập SĐT Quản Lý">
         
                                         </div>
-                            </div>
+                                    </div>
 
                             
 

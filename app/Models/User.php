@@ -70,4 +70,12 @@ class User extends Authenticatable
     public function get_job_single(){
         return $this->belongsTo(JobsModel::class, "job_id");
     }
+
+    public function get_manager_name_single(){
+        return $this->belongsTo(ManagerModel::class, 'manager_id');
+    }
+
+    public function get_departments_name_single(){
+        return $this->belongsTo(DepartmentsModel::class, 'department_id');
+    }
 }

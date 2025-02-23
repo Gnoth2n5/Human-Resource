@@ -34,31 +34,31 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable">Địa chỉ đường <span style="color: red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" value="{{old('street_address')}}" name="street_address" class="form-cpntrol" required placeholder="Nhập Đường">
-
+                                    <input type="text" value="{{old('street_address')}}" name="street_address" class="form-control" required placeholder="Nhập Đường">
+                                    <span style="color: red">{{ $errors->first('street_address') }}</span>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable">Mã bưu điện<span style="color: red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="number" value="{{old('postal_code')}}" name="postal_code" class="form-cpntrol" required placeholder="Nhập Mã Bưu Điện">
-
+                                    <input type="number" value="{{old('postal_code')}}" name="postal_code" class="form-control" required placeholder="Nhập Mã Bưu Điện">
+                                    <span style="color: red">{{ $errors->first('postal_code') }}</span>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable">Thành phố<span style="color: red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" value="{{old('city')}}" name="city" class="form-cpntrol" required placeholder="Nhập Thành Phố">
-
+                                    <input type="text" value="{{old('city')}}" name="city" class="form-control" required placeholder="Nhập Thành Phố">
+                                    <span style="color: red">{{ $errors->first('city') }}</span>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable">Tỉnh<span style="color: red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" value="{{old('	state_province')}}" name="	state_province" class="form-cpntrol" required placeholder="Nhập tỉnh">
-
+                                    <input type="text" value="{{old('state_province')}}" name="state_province" class="form-control" required placeholder="Nhập tỉnh">
+                                    <span style="color: red">{{ $errors->first('state_province') }}</span>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -70,6 +70,7 @@
                                     <option value="{{ $countries->id }}">{{ $countries->country_name }}</option>
                                 @endforeach                              
                                    </select>
+                                   <span style="color: red">{{ $errors->first('countries_id') }}</span>
                                 </div>
                             </div>
 

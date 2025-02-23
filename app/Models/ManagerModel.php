@@ -32,6 +32,9 @@ class ManagerModel extends Model
             {  
                 $return = $return->where('manager.manager_mobile', 'like', '%' . Request::get('manager_mobile') . '%');  
             }
+            if (!empty(Request::get('start_date')) && !empty(Request::get('end_date'))) {
+                $return = $return->where('manager.created_at', '>=', Request::get('start_date'))->where('manager.created_at', '<=', Request::get('end_date'));
+            }
             
         $return = $return->paginate(20);
     

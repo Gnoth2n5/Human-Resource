@@ -47,6 +47,13 @@
                                 </div>
 
                                 <div class="form-group row">
+                                    <label class="col-sm-2 col-form-lable">Mức Lương Tối Đa<span style="color: red">*</span></label>
+                                    <div class="col-sm-10">
+                                        {{$getRecord->max_salary}}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
                                     <label class="col-sm-2 col-form-lable">Created Date <span style="color: red"></span></label>
                                     <div class="col-sm-10">
                                         {{ date('d-m-Y H:i A', strtotime($getRecord->created_at)) }}

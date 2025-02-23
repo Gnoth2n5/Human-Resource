@@ -31,7 +31,9 @@
                         <div class="card-header">
                             <h3 class="card-title">Thêm Tài Khoản</h3>
                         </div>
-                        <form class="form-horizontai" method="post" action="{{ url('admin/my_account/update') }}"  enctype="multipart/form-data">
+
+                        <form  class="form-horizontai" method="post" action="{{ url('admin/my_account/update') }}"  enctype="multipart/form-data">
+
                             {{csrf_field()}}
                             <div class="card-body">
                                 <div class="form-group row">
@@ -41,7 +43,9 @@
 
                                     </div>
                                     <span style="color: red;">{{ $errors->first('name') }}</span>
+
                                 </div>
+
 
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-lable">Email <span style="color: red">*</span></label>
@@ -49,6 +53,7 @@
                                             <input type="email" value="{{ $getRecord->email }}" name="email" class="form-control" required placeholder="Nhập Email">
                                             <span style="color: red;">{{ $errors->first('email') }}</span>
                                         </div>
+
                                     </div>
                                         
                                         <div class="form-group row">
@@ -67,6 +72,10 @@
                                         </div>                    
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-lable">Mật Khẩu<span style="color: red">*</span></label>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-lable">Mật Khẩu <span style="color: red">*</span></label>
+
                                             <div class="col-sm-10">
                                                 <input type="text" name="password" class="form-control" placeholder="Nhập Mật Khẩu">
                                                 (Để trống nếu bạn không thay đổi mật khẩu).
