@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\CountriesController;
 use App\Http\Controllers\Backend\LocationController;
 use App\Http\Controllers\Backend\DepartmentsController;
 use App\Http\Controllers\Backend\ManagerController;
+use App\Http\Controllers\Backend\MyAccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -131,6 +132,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/manager/edit/{id}', [ManagerController::class, 'edit']);
     Route::post('admin/manager/edit/{id}', [ManagerController::class, 'edit_update']);
     Route::get('admin/manager/delete/{id}', [ManagerController::class, 'delete']);
+    Route::get('admin/my_account', [MyAccountController::class, 'my_account']);
+    Route::post('admin/my_account/update', [MyAccountController::class, 'edit_update']);
 
 
   

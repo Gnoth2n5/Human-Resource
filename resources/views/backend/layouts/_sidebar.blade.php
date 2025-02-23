@@ -55,7 +55,7 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
 
-                <img src="{{ asset('backend/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
+                <img src="{{url('upload/'.Auth::user()->profile_image) }}" class="img-circle elevation-2"
                     alt="User Image">
 
             </div>
@@ -204,9 +204,19 @@
                         <p>Manager</p>
                     </a>
                 </li>
+<<<<<<< Updated upstream
                 
 
 
+=======
+                <li class="nav-item">
+                    <a href="{{ url('admin/my_account') }}" class="nav-link @if (Request::segment(2) == 'my_account') active @endif">
+                        <i class="nav-icon fa fa-cog"></i>
+                        <p>My Account</p>
+                    </a>
+
+                </li>
+>>>>>>> Stashed changes
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

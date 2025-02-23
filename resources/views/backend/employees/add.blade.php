@@ -59,6 +59,14 @@
                                 </div>
                                 <span style="color: red">{{$errors->first('phone_number')}}</span>
                             </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-lable">Ảnh đại diện <span style="color: red">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="file"  name="profile_image" class="form-cpntrol" >
+                                </div>
+                            </div>
+
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable">Ngày thuê <span style="color: red">*</span></label>
                                 <div class="col-sm-10">

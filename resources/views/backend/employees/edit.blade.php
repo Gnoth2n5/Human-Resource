@@ -61,6 +61,20 @@
                                 <span style="color: red">{{$errors->first('phone_number')}}</span>
                             </div>
                             <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    Ảnh đại diện <span style="color: red;"></span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="file" name="profile_image" class="form-control">
+                                        @if(!empty($getRecord->profile_image))
+                                            @if(file_exists(public_path('upload/' . $getRecord->profile_image)))
+                                                <img src="{{ url('upload/' . $getRecord->profile_image) }}" 
+                                                     style="height: 80px; width: 80px;">
+                                            @endif
+                                        @endif
+                                </div>
+                            </div>                            
+                            <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable">Ngày thuê <span style="color: red">*</span></label>
                                 <div class="col-sm-10">
                                     <input type="date" value="{{$getRecord->hire_date}}" name="hire_date" class="form-cpntrol" required placeholder="Nhập ngày">
