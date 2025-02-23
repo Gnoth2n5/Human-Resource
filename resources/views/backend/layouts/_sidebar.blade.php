@@ -181,6 +181,15 @@
                     </a>
 
                 </li>
+                <li class="nav-item">
+                    <a href="{{ url('admin/position') }}" class="nav-link @if(Request::segment(2) == 'position') active @endif">
+                        <i class="nav-icon fa fa-user"></i>
+                        <p>
+                            Position
+                        </p>
+                    </a>
+                </li>
+                
 
                 <li class="nav-item">
                     <a href="{{ url('admin/my_account') }}" class="nav-link @if (Request::segment(2) == 'my_account') active @endif">

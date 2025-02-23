@@ -16,7 +16,7 @@ use App\Http\Controllers\Backend\LocationController;
 use App\Http\Controllers\Backend\DepartmentsController;
 use App\Http\Controllers\Backend\ManagerController;
 use App\Http\Controllers\Backend\MyAccountController;
-
+use App\Http\Controllers\Backend\PositionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -140,6 +140,15 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/my_account', [MyAccountController::class, 'my_account']);
     Route::post('admin/my_account/update', [MyAccountController::class, 'edit_update']);
     // my Account end
+    //position star
+    Route::get('admin/position', [PositionController::class, 'index']);
+    Route::get('admin/position/add', [PositionController::class, 'add']);
+    Route::post('admin/position/add', [PositionController::class, 'insert_add']);
+    Route::get('admin/position/edit/{id}', [PositionController::class, 'edit']);
+    Route::post('admin/position/edit/{id}', [PositionController::class, 'edit_update']);
+    Route::get('admin/position/delete/{id}', [PositionController::class, 'delete']);
+    Route::get('admin/position_export', [PositionController::class, 'position_export']);
+    //position end
 
 
 
