@@ -57,6 +57,17 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label class="col-sm-2 col-form-lable">Profile Image <span style="color: red;"> </span></label>
+                                    <div class="col-sm-10">
+                                        @if(!empty($getRecord->profile_image))
+                                            @if(file_exists('upload/'.$getRecord->profile_image))
+                                                <img src="{{ url('upload/'.$getRecord->profile_image) }}" 
+                                                     style="height: 80; width: 80px;">
+                                            @endif
+                                        @endif
+                                    </div>
+                                </div>                                
+                                <div class="form-group row">
                                     <label class="col-sm-2 col-form-lable">Ngày thuê <span style="color: red"></span></label>
                                     <div class="col-sm-10">
                                         {{date('d-m-Y',strtotime($getRecord->hire_date))}}

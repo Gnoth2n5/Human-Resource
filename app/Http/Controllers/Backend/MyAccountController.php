@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
 
+use Str;
+
+
 class MyAccountController extends Controller
 {
     public function my_account(Request $request)
@@ -27,6 +30,19 @@ class MyAccountController extends Controller
         if(!empty($request->password)){
             $user->password = trim($request->password);
         }
+
+        if (!empty($request->file('profile_image'))) {
+            if (!empty($user->profile_image) && file_exists('upload/' . $user->profile_image)) {
+                unlink('upload/' . $user->profile_image);
+            }            
+            $file = $request->file('profile_image');
+            $randomStr = Str::random(30);
+            $filename = $randomStr . '.' . $file->getClientOriginalExtension();
+            $file->move('upload/', $filename);
+            $user->profile_image = $filename;
+        }        
+
+
 
         $user->save();
 
