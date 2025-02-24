@@ -41,4 +41,48 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+<<<<<<< Updated upstream
+=======
+    static public function getRecord()
+    {
+        // $return=self::select('users.*')->orderBy('id','desc')->paginate(20);
+        // return $return;
+        $return = self::select('users.*');
+        //search box start
+        if (!empty(request()->get('id'))) {
+            $return = $return->where('id', '=', request()->get('id'));
+        }
+
+        if (!empty(request()->get('name'))) {
+            $return = $return->where('name', 'like', '%' . request()->get('name') . '%');
+        }
+
+        if (!empty(request()->get('last_name'))) {
+            $return = $return->where('last_name', 'like', '%' . request()->get('last_name') . '%');
+        }
+        if (!empty(request()->get('email'))) {
+            $return = $return->where('email', 'like', '%' . request()->get('email') . '%');
+        }
+        //search box end
+        $return = $return->orderBy('id', 'desc')->paginate(20);
+        return $return;
+
+    }
+
+    public function get_job_single(){
+        return $this->belongsTo(JobsModel::class, "job_id");
+    }
+
+    public function get_manager_name_single(){
+        return $this->belongsTo(ManagerModel::class, 'manager_id');
+    }
+
+    public function get_departments_name_single(){
+        return $this->belongsTo(DepartmentsModel::class, 'department_id');
+    }
+
+    public function get_position_name_single(){
+        return $this->belongsTo(PositionModel::class, 'position_id');
+    }
+>>>>>>> Stashed changes
 }
