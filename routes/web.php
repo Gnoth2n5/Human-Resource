@@ -16,7 +16,10 @@ use App\Http\Controllers\Backend\LocationController;
 use App\Http\Controllers\Backend\DepartmentsController;
 use App\Http\Controllers\Backend\ManagerController;
 use App\Http\Controllers\Backend\MyAccountController;
+
+use App\Http\Controllers\Backend\PayrollController;
 use App\Http\Controllers\Backend\PositionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -111,6 +114,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/countries/delete/{id}', [CountriesController::class, 'delete']);
     Route::get('admin/countries_export', [CountriesController::class, 'countries_export']);
 
+
     Route::get('admin/locations', [LocationController::class, 'index']);
     Route::get('admin/locations/add', [LocationController::class, 'add']);
     Route::post('admin/locations/add', [LocationController::class, 'add_post']);
@@ -140,6 +144,17 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/my_account', [MyAccountController::class, 'my_account']);
     Route::post('admin/my_account/update', [MyAccountController::class, 'edit_update']);
     // my Account end
+
+    
+    Route::get('admin/payroll', [PayrollController::class, 'index']);
+    Route::get('admin/payroll/add', [PayrollController::class, 'add']);
+    Route::post('admin/payroll/add', [PayrollController::class, 'insert_add']);
+    Route::get('admin/payroll/view/{id}', [PayrollController::class, 'view']);
+    Route::get('admin/payroll/edit/{id}', [PayrollController::class, 'edit']);
+    Route::post('admin/payroll/edit/{id}', [PayrollController::class, 'update']);
+    Route::get('admin/payroll/delete/{id}', [PayrollController::class, 'delete']);
+    Route::get('admin/payroll_export', [PayrollController::class, 'payroll_export']);
+
     //position star
     Route::get('admin/position', [PositionController::class, 'index']);
     Route::get('admin/position/add', [PositionController::class, 'add']);
@@ -149,7 +164,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/position/delete/{id}', [PositionController::class, 'delete']);
     Route::get('admin/position_export', [PositionController::class, 'position_export']);
     //position end
-
 
 
   
