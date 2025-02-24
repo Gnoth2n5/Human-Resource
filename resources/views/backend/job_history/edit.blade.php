@@ -66,7 +66,7 @@
                                     <select class="form-control" name="job_id">
                                         <option value="">Select Job Name</option>
                                         @foreach($getJobs as $value_job)
-                                            <option {{($value_employee->id == $getRecord->employee_id) ? 'selected' : ''}} value="{{ $value_job->id }}">{{ $value_job->job_titlle }}</option>
+                                            <option {{($value_job->id == $getRecord->job_id) ? 'selected' : ''}} value="{{ $value_job->id }}">{{ $value_job->job_titlle }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -78,8 +78,9 @@
                                 <div class="col-sm-10">
                                     <select class="form-control" name="department_id">
                                         <option value="">Select Department Name</option>
-                                        <option {{($value_employee->id == $getRecord->employee_id) ? 'selected' : ''}} value="1">Dev Department</option>
-                                        <option {{($value_employee->id == $getRecord->employee_id) ? 'selected' : ''}} value="2">PDF Department</option>
+                                        @foreach ($getDepartments as $value_d)
+                                            <option {{ ($value_d->id == $getRecord->department_id) ? 'selected' : '' }} value="{{ $value_d->id }}">{{ $value_d->department_name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

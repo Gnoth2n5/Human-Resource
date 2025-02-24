@@ -14,7 +14,7 @@
 
 
 
-                    <a href="{{ url('admin/job_grades/add') }}" class="btn btn-primary mx-2">Add Job History</a>
+                    <a href="{{ url('admin/job_grades/add') }}" class="btn btn-primary mx-2">Add Job Grades</a>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->

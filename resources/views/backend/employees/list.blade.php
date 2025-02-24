@@ -70,6 +70,7 @@
                           <th>Tên</th>
                           <th>Họ</th>
                           <th>Email</th>
+                          <th>Ảnh đại diện</th>
                           <th>Role</th>
                           <th>Hành động</th>
                           
@@ -83,6 +84,14 @@
                           <td>{{$value->name}}</td>
                           <td>{{$value->last_name}}</td>
                           <td>{{$value->email}}</td>
+                          <td>
+                            @if(!empty($value->profile_image))
+                                @if(file_exists(public_path('upload/' . $value->profile_image)))
+                                    <img src="{{ url('upload/' . $value->profile_image) }}" 
+                                         style="height: 80px; width: 80px;">
+                                @endif
+                            @endif
+                        </td>
                           <td>{{!empty($value->is_role)?'HR':'Nhân viên'}}</td>
                           <td>
                             <a href="{{url('admin/employees/view/'.$value->id)}}" class="btn btn-info">View</a>
