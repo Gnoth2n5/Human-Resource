@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
+
 use App\Models\CountriesModel;
 use App\Models\DepartmentsModel;
 use App\Models\LocationsModel;
@@ -15,10 +16,13 @@ use App\Models\RegionsModel;
 use Carbon\Carbon;
 use Auth;
 
+
+
 class DashboardController extends Controller
 {
     public function dashboard(Request $request)
     {
+
         if(Auth::user()->is_role == '1') {
 
         $data['getEmployeeCount'] = User::count();
@@ -44,6 +48,8 @@ class DashboardController extends Controller
         } else if(Auth::user()->is_role == '0') {
             return view('backend.employee.dashboard.list');
         }
+
+
     }
 }
 

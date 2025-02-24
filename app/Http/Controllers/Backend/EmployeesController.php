@@ -8,11 +8,13 @@ use App\Models\JobsModel;
 
 use Str;
 use File;
+
 use Hash;
 
 use App\Models\ManagerModel;
 use App\Models\DepartmentsModel;
 use App\Models\PositionModel;
+
 
 class EmployeesController extends Controller
 {
@@ -21,6 +23,7 @@ class EmployeesController extends Controller
         $data['getRecord'] = User::getRecord();
         return view('backend.employees.list', $data);
     }
+
 
     public function image_delete($id, Request $request){
         $deleteRecord = User::find($id);
@@ -31,6 +34,7 @@ class EmployeesController extends Controller
 
     public function add(Request $request){
         $data['getPosition'] = PositionModel::get();
+
         $data['getDepartments'] = DepartmentsModel::get();
         $data['getManager'] = ManagerModel::get();
 
@@ -67,6 +71,7 @@ class EmployeesController extends Controller
         $user->is_role = 0;
         $user->password = Hash::make($request->password);
 
+
         if (!empty($request->file('profile_image'))) {
             $file = $request->file('profile_image');
             $randomStr = Str::random(30);
@@ -87,7 +92,9 @@ class EmployeesController extends Controller
     }
 
     public function edit($id){
+
         $data['getPosition'] = PositionModel::get();
+
         $data['getDepartments'] = DepartmentsModel::get();
         $data['getManager'] = ManagerModel::get();
 
@@ -128,6 +135,7 @@ class EmployeesController extends Controller
         if(!empty($request->password)){
             $user->password = Hash::make($request->password);
         }
+
 
         if (!empty($request->file('profile_image'))) {
 

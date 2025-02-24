@@ -28,13 +28,15 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <h3>{{ !empty('$getEmployeeCount') ? $getEmployeeCount : '0' }}</h3>
-
                 <p>Nhân Viên</p>
+                <h3>150</h3>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
+
               <a href="{{ url('admin/employees') }}" class="small-box-footer">Xem Thêm Thông Tin <i class="fas fa-arrow-circle-right"></i></a>
+
             </div>
           </div>
           <!-- ./col -->
@@ -42,14 +44,17 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
+
                 <h3>{{ !empty('$getHRCount') ? $getHRCount : '0' }}</h3>
 
                 <p>Tổng Thể Quản Trị Nhân Sự</p>
+
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
               <a href="{{ url('admin/manager') }}" class="small-box-footer">Xem Thêm Thông Tin <i class="fas fa-arrow-circle-right"></i></a>
+
             </div>
           </div>
           <!-- ./col -->
@@ -57,14 +62,18 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
+
                 <h3>{{ !empty('$getEMPCount') ? $getEMPCount : '0' }}</h3>
 
                 <p>Tổng Số Nhân Viên</p>
+
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
+
               <a href="{{ url('admin/employees') }}" class="small-box-footer">Xem Thêm Thông Tin <i class="fas fa-arrow-circle-right"></i></a>
+
             </div>
           </div>
           <!-- ./col -->
@@ -72,13 +81,16 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
+
                 <h3>{{ !empty('$getTotalJobCount') ? $getTotalJobCount : '0' }}</h3>
 
                 <p>Tổng Số Công Việc</p>
+
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
+
               <a href="{{ url('admin/jobs') }}" class="small-box-footer">Xem Thêm Thông Tin <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
@@ -217,6 +229,7 @@
             </div>
             <a href="{{ url('admin/position') }}" class="small-box-footer">Xem Thêm Thông Tin <i class="fas fa-arrow-circle-right"></i></a>
           </div>
+
         </div>
         <!-- /.row -->
         <!-- Main row -->

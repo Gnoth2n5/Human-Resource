@@ -50,6 +50,7 @@ class MyAccountController extends Controller
 
     }
 
+
     public function employee_my_account(Request $request){
         $data['getRecord'] = User::find(Auth::user()->id);
         return view('backend.employee.my_account.update', $data);
@@ -85,6 +86,7 @@ class MyAccountController extends Controller
 
         return redirect('employee/my_account')->with('success', 'Tài khoản cập nhật thành công!!!');
     }
+
 }
 
 ?>
