@@ -53,6 +53,18 @@
                                 </div>
                                 <span style="color: red">{{$errors->first('email')}}</span>
                             </div>
+
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-lable">Mật Khẩu <span style="color: red">*</span></label>
+                                <div class="col-sm-10"> 
+                                    <input type="password" value="" name="password" class="form-cpntrol" placeholder="Nhập Mật Khẩu">
+                                    (Để trống nếu bạn không thay đổi mật khẩu).
+                                </div>
+                                <span style="color: red">{{$errors->first('password')}}</span>
+                            </div>
+
+
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable">Số điện thoại <span style="color: red"></span></label>
                                 <div class="col-sm-10">
@@ -126,6 +138,20 @@
                                     </select>
                                 </div>
                             </div>
+
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-lable">Tên Chức Vụ <span style="color: red"> *</span></label>
+                                <div class="col-sm-10">
+                                    <select name="position_id" id="" class="form-control" required>
+                                        <option value="">Chọn Tên Chức Vụ</option>
+                                        @foreach($getPosition as $value_p)
+                                            <option {{ ($value_p->id == $getRecord->position_id) ? 'selected' : '' }} value="{{ $value_p->id }}">{{ $value_p->position_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Sửa</button>

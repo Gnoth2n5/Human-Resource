@@ -90,13 +90,18 @@
                                     <img src="{{ url('upload/' . $value->profile_image) }}" 
                                          style="height: 80px; width: 80px;">
                                 @endif
+
+                                <a href="{{ url('admin/employees/image_delete/'.$value->id) }}" onclick="return confirm('Bạn Có Chắc Chắn Muốn Xoá BẢn TIn Này KO?')" class="btn btn-danger">Delete</a>
+
                             @endif
                         </td>
                           <td>{{!empty($value->is_role)?'HR':'Nhân viên'}}</td>
                           <td>
                             <a href="{{url('admin/employees/view/'.$value->id)}}" class="btn btn-info">View</a>
                             <a href="{{url('admin/employees/edit/'.$value->id)}}" class="btn btn-primary">Edit</a>
-                            <a href="{{url('admin/employees/delete/'.$value->id)}}" onclick="return confirm('Bạn có chắc muốn xóa')" class="btn btn-danger">Delete</a>
+
+                            <a href="{{url('admin/employees/delete/.'.$value->id)}}" onclick="return confirm('Bạn có chắc muốn xóa')" class="btn btn-danger">Delete</a>
+
                           </td>
                           
                         </tr>

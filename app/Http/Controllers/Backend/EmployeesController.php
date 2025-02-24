@@ -9,8 +9,11 @@ use App\Models\JobsModel;
 use Str;
 use File;
 
+use Hash;
+
 use App\Models\ManagerModel;
 use App\Models\DepartmentsModel;
+use App\Models\PositionModel;
 
 
 class EmployeesController extends Controller
@@ -21,7 +24,17 @@ class EmployeesController extends Controller
         return view('backend.employees.list', $data);
     }
 
+
+    public function image_delete($id, Request $request){
+        $deleteRecord = User::find($id);
+        $deleteRecord->profile_image = $request->profile_image;
+        $deleteRecord->save();
+        return redirect()->back()->with('error', 'Ảnh Đại Diện đã xóa thành công');
+    }
+
     public function add(Request $request){
+        $data['getPosition'] = PositionModel::get();
+
         $data['getDepartments'] = DepartmentsModel::get();
         $data['getManager'] = ManagerModel::get();
 
@@ -32,6 +45,7 @@ class EmployeesController extends Controller
     {
         $user = request()->validate([
             'name' => 'required',
+            'password' => 'required',
             'last_name' => 'required',
             'email' => 'required|unique:users',
             'hire_date' => 'required',
@@ -53,7 +67,10 @@ class EmployeesController extends Controller
         $user->commission_pct = trim($request->commission_pct);
         $user->manager_id = trim($request->manager_id);
         $user->department_id = trim($request->department_id);
+        $user->position_id = trim($request->position_id);
         $user->is_role = 0;
+        $user->password = Hash::make($request->password);
+
 
         if (!empty($request->file('profile_image'))) {
             $file = $request->file('profile_image');
@@ -75,7 +92,9 @@ class EmployeesController extends Controller
     }
 
     public function edit($id){
-        
+
+        $data['getPosition'] = PositionModel::get();
+
         $data['getDepartments'] = DepartmentsModel::get();
         $data['getManager'] = ManagerModel::get();
 
@@ -110,7 +129,14 @@ class EmployeesController extends Controller
         $user->commission_pct = trim($request->commission_pct);
         $user->manager_id = trim($request->manager_id);
         $user->department_id = trim($request->department_id);
+        $user->position_id = trim($request->position_id);
         $user->is_role = 0; // 0 - Employees
+
+        if(!empty($request->password)){
+            $user->password = Hash::make($request->password);
+        }
+
+
         if (!empty($request->file('profile_image'))) {
 
             if (!empty($user->profile_image) && file_exists('upload/' . $user->profile_image)) {

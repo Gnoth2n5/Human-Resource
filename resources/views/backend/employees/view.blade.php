@@ -103,6 +103,16 @@
                                         {{ !empty($getRecord->get_departments_name_single->department_name) ? $getRecord->get_departments_name_single->department_name : '' }}
                                     </div>
                                 </div>
+
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-lable">Tên Chức Vụ <span style="color: red"></span></label>
+                                    <div class="col-sm-10">
+                                        {{ !empty($getRecord->get_position_name_single->position_name) ? $getRecord->get_position_name_single->position_name : '' }}
+                                    </div>
+                                </div>
+
+
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-lable">Ngày tạo <span style="color: red"></span></label>
                                     <div class="col-sm-10">
