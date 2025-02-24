@@ -12,6 +12,14 @@ use App\Http\Controllers\Backend\JobGradesController;
 use App\Http\Controllers\Backend\RegionsController;
 use App\Http\Controllers\Backend\CountriesController;
 
+<<<<<<< Updated upstream
+=======
+use App\Http\Controllers\Backend\LocationController;
+use App\Http\Controllers\Backend\DepartmentsController;
+use App\Http\Controllers\Backend\ManagerController;
+use App\Http\Controllers\Backend\MyAccountController;
+use App\Http\Controllers\Backend\PayrollController;
+>>>>>>> Stashed changes
 
 /*
 |--------------------------------------------------------------------------
@@ -105,7 +113,49 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/countries/edit/{id}', [CountriesController::class, 'edit_update']);
     Route::get('admin/countries/delete/{id}', [CountriesController::class, 'delete']);
     Route::get('admin/countries_export', [CountriesController::class, 'countries_export']);
+<<<<<<< Updated upstream
     
+=======
+
+    Route::get('admin/locations', [LocationController::class, 'index']);
+    Route::get('admin/locations/add', [LocationController::class, 'add']);
+    Route::post('admin/locations/add', [LocationController::class, 'add_post']);
+    Route::get('admin/locations/edit/{id}', [LocationController::class, 'edit']);
+    Route::post('admin/locations/edit/{id}', [LocationController::class, 'edit_update']);
+    Route::get('admin/locations/delete/{id}', [LocationController::class, 'delete']);
+    Route::get('admin/locations_export', [LocationController::class, 'locations_export']);
+
+    Route::get('admin/departments', [DepartmentsController::class, 'index']);
+    Route::get('admin/departments/add', [DepartmentsController::class, 'add']);
+    Route::post('admin/departments/add', [DepartmentsController::class, 'add_post']);
+    Route::get('admin/departments/edit/{id}', [DepartmentsController::class, 'edit']);
+    Route::post('admin/departments/edit/{id}', [DepartmentsController::class, 'edit_update']);
+    Route::get('admin/departments/delete/{id}', [DepartmentsController::class, 'delete']);
+    Route::get('admin/departments_export', [DepartmentsController::class, 'departments_export']);
+    Route::get('admin/manager', [ManagerController::class, 'index']);
+    Route::get('admin/manager/add', [ManagerController::class, 'add']);
+    Route::post('admin/manager/add', [ManagerController::class, 'add_post']);
+    Route::get('admin/manager/edit/{id}', [ManagerController::class, 'edit']);
+    Route::post('admin/manager/edit/{id}', [ManagerController::class, 'edit_update']);
+    Route::get('admin/manager/delete/{id}', [ManagerController::class, 'delete']);
+    Route::get('admin/manager_export', [ManagerController::class, 'manager_export']);
+    // manager end
+
+    // my Account start
+
+    Route::get('admin/my_account', [MyAccountController::class, 'my_account']);
+    Route::post('admin/my_account/update', [MyAccountController::class, 'edit_update']);
+    // my Account end
+    
+    Route::get('admin/payroll', [PayrollController::class, 'index']);
+    Route::get('admin/payroll/add', [PayrollController::class, 'add']);
+    Route::post('admin/payroll/add', [PayrollController::class, 'insert_add']);
+    Route::get('admin/payroll/view/{id}', [PayrollController::class, 'view']);
+    Route::get('admin/payroll/edit/{id}', [PayrollController::class, 'edit']);
+    Route::post('admin/payroll/edit/{id}', [PayrollController::class, 'update']);
+    Route::get('admin/payroll/delete/{id}', [PayrollController::class, 'delete']);
+    Route::get('admin/payroll_export', [PayrollController::class, 'payroll_export']);
+>>>>>>> Stashed changes
 
   
 });
