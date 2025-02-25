@@ -51,18 +51,23 @@ Route::post('checkemail',[AuthController::class,'CheckEmail']);
 Route::post('login_post',[AuthController::class,'login_post']);
 
 Route::group(['middleware' => 'admin'], function () {
+
     Route::get('admin/dashboard', [DashboardController::class, 'dashboard']);
     Route::get('admin', function () {
         return redirect('admin/dashboard');
     });
 
-    Route::get('admin/employees',[EmployeesController::class, 'index']);
-    Route::get('admin/employees/add',[EmployeesController::class, 'add']);
-    Route::post('admin/employees/add',[EmployeesController::class, 'add_post']);
-    Route::get('admin/employees/view/{id}',[EmployeesController::class, 'view']);
-    Route::get('admin/employees/edit/{id}',[EmployeesController::class, 'edit']);
-    Route::post('admin/employees/edit/{id}',[EmployeesController::class, 'edit_update']);
-    Route::get('admin/employees/delete/{id}',[EmployeesController::class, 'delete']);
+    include 'employee/employee.php';
+
+
+
+
+
+
+
+
+
+    
 
     Route::get('admin/jobs', [JobsController::class, 'index']);
     Route::get('admin/jobs/add', [JobsController::class, 'add']);
