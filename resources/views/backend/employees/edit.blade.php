@@ -33,17 +33,10 @@
                         <div class="card-body">
                            
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-lable">Tên <span style="color: red">*</span></label>
+                                <label class="col-sm-2 col-form-lable">Họ và tên <span style="color: red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" value="{{$getRecord->name}}" name="name" class="form-cpntrol" required placeholder="Nhập họ">
+                                    <input type="text" value="{{$getRecord->full_name}}" name="full_name" class="form-cpntrol" required placeholder="Nhập họ và tên">
 
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-lable">họ <span style="color: red"></span></label>
-                                <div class="col-sm-10">
-                                    <input type="text"value="{{$getRecord->last_name}}" name="last_name" class="form-cpntrol" placeholder="Nhập tên">
-                                    
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -53,18 +46,6 @@
                                 </div>
                                 <span style="color: red">{{$errors->first('email')}}</span>
                             </div>
-
-
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-lable">Mật Khẩu <span style="color: red">*</span></label>
-                                <div class="col-sm-10"> 
-                                    <input type="password" value="" name="password" class="form-cpntrol" placeholder="Nhập Mật Khẩu">
-                                    (Để trống nếu bạn không thay đổi mật khẩu).
-                                </div>
-                                <span style="color: red">{{$errors->first('password')}}</span>
-                            </div>
-
-
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable">Số điện thoại <span style="color: red"></span></label>
                                 <div class="col-sm-10">
@@ -72,86 +53,24 @@
                                 </div>
                                 <span style="color: red">{{$errors->first('phone_number')}}</span>
                             </div>
+                            
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">
-                                    Ảnh đại diện <span style="color: red;"></span>
-                                </label>
+                                <label class="col-sm-2 col-form-lable">Địa chỉ thoại <span style="color: red"></span></label>
                                 <div class="col-sm-10">
-                                    <input type="file" name="profile_image" class="form-control">
-                                        @if(!empty($getRecord->profile_image))
-                                            @if(file_exists(public_path('upload/' . $getRecord->profile_image)))
-                                                <img src="{{ url('upload/' . $getRecord->profile_image) }}" 
-                                                     style="height: 80px; width: 80px;">
-                                            @endif
-                                        @endif
+                                    <input type="number" value="{{$getRecord->address}}" name="address" class="form-cpntrol"  placeholder="Nhập địa chỉ">
                                 </div>
-                            </div>                            
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-lable">Ngày thuê <span style="color: red">*</span></label>
-                                <div class="col-sm-10">
-                                    <input type="date" value="{{$getRecord->hire_date}}" name="hire_date" class="form-cpntrol" required placeholder="Nhập ngày">
-                                </div>
+                                <span style="color: red">{{$errors->first('address')}}</span>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-lable">Job Title <span style="color: red">*</span></label>
+                                <label class="col-sm-2 col-form-label">Avatar <span style="color: red">*</span></label>
                                 <div class="col-sm-10">
-                                   <select name="job_id"  class="form-control" required>
-                                    @foreach($getJobs as $value_job)
-                                        <option {{ $value_job->id ==  $getRecord->job_id ? 'selected' : ''}} value="{{ $value_job->id }}">{{ $value_job->job_titlle }}</option>
-                                    @endforeach
-                                   </select>
+                                    <input type="file" name="avatar" class="form-control" accept="image/*">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-lable">Lương <span style="color: red">*</span></label>
-                                <div class="col-sm-10">
-                                    <input type="number" value="{{$getRecord->salary}}" name="salary" class="form-cpntrol" required placeholder="Nhập lương">
+                                <div>
+                                    <img src="{{$getRecord->avatar}}" alt="">
                                 </div>
-                                <span style="color: red">{{$errors->first('salary')}}</span>
+                                <span style="color: red">{{$errors->first('avatar')}}</span>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-lable">Nhiệm vụ <span style="color: red">*</span></label>
-                                <div class="col-sm-10">
-                                    <input type="number" value="{{$getRecord->commission_pct}}" name="commission_pct" class="form-cpntrol" required placeholder="Nhập nhiệm vụ">
-                                </div>
-                                <span style="color: red">{{$errors->first('commission_pct')}}</span>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-lable">Manager Name <span style="color: red">*</span></label>
-                                <div class="col-sm-10">
-                                    <select name="manager_id"  class="form-control" required>
-                                        <option value="">Select Manager Name</option>
-                                        @foreach ($getManager as $value_m)
-                                            <option {{ ($value_m->id == $getRecord->manager_id) ? 'selected' : ''}} value="{{ $value_m->id }}">{{ $value_m->manager_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-lable">Phòng  <span style="color: red">*</span></label>
-                                <div class="col-sm-10">
-                                    <select name="department_id"  class="form-control" required>
-                                        <option value="">Select Department Name</option>
-                                        @foreach ($getDepartments as $value_d)
-                                            <option {{ ($value_d->id == $getRecord->department_id) ? 'selected' : ''}} value="{{ $value_d->id }}">{{ $value_d->department_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-lable">Tên Chức Vụ <span style="color: red"> *</span></label>
-                                <div class="col-sm-10">
-                                    <select name="position_id" id="" class="form-control" required>
-                                        <option value="">Chọn Tên Chức Vụ</option>
-                                        @foreach($getPosition as $value_p)
-                                            <option {{ ($value_p->id == $getRecord->position_id) ? 'selected' : '' }} value="{{ $value_p->id }}">{{ $value_p->position_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Sửa</button>
