@@ -59,7 +59,7 @@ class EmployeesController extends Controller
             $randomStr = Str::random(30);
             $filename = $randomStr . '.' . $file->getClientOriginalExtension();
             $file->move('upload/', $filename);
-            $user->profile_image = $filename;
+            $user->avatar = $filename;
         }
 
         $user->save();
@@ -105,7 +105,7 @@ class EmployeesController extends Controller
             $randomStr = Str::random(30);
             $filename = $randomStr . '.' . $file->getClientOriginalExtension();
             $file->move('upload/', $filename);
-            $user->profile_image = $filename;
+            $user->avatar = $filename;
         }
 
         $user->save();
