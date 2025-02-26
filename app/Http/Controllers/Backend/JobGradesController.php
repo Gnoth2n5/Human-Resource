@@ -24,16 +24,15 @@ class JobGradesController extends Controller
         // dd($request->all());
         
         $user = request()->validate([
-           'grade_level' => 'required',
-           'lowest_sal' => 'required',
-           'highest_sal' => 'required',
+           'grade_name' => 'required',
+           'salary_multiplier' => 'required',
+           
         ]);
 
         
         $user = new JobGradesModel;
-        $user->grade_level = trim($request->grade_level);
-        $user->lowest_sal = trim($request->lowest_sal);
-        $user->highest_sal = trim($request->highest_sal);
+        $user->grade_name = trim($request->grade_name);
+        $user->salary_multiplier = trim($request->salary_multiplier);
         $user->save();
 
         return redirect('admin/job_grades')->with('success', 'Job Grades Successfully add');
@@ -46,9 +45,8 @@ class JobGradesController extends Controller
 
     public function edit_update($id, Request $request){
         $user = JobGradesModel::find($id);
-        $user->grade_level = trim($request->grade_level);
-        $user->lowest_sal = trim($request->lowest_sal);
-        $user->highest_sal = trim($request->highest_sal);
+        $user->grade_name = trim($request->grade_name);
+        $user->salary_multiplier = trim($request->salary_multiplier);
         $user->save();
 
         return redirect('admin/job_grades')->with('success', 'Job Grades Successfully Update');
