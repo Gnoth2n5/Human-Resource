@@ -41,6 +41,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
     static public function getRecord()
     {
         // $return=self::select('users.*')->orderBy('id','desc')->paginate(20);
@@ -78,4 +79,10 @@ class User extends Authenticatable
     public function get_departments_name_single(){
         return $this->belongsTo(DepartmentsModel::class, 'department_id');
     }
+
+
+    public function get_position_name_single(){
+        return $this->belongsTo(PositionModel::class, 'position_id');
+    }
+
 }

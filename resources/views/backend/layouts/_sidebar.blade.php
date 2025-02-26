@@ -41,7 +41,9 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+
+    <a href="{{ url('admin/dashboard') }}" class="brand-link">
+
 
         <img src="{{ asset('backend/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -73,6 +75,8 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
+                
+            @if (Auth::user()->is_role == '1')
 
                 <li class="nav-item">
 
@@ -189,8 +193,7 @@
                         </p>
                     </a>
                 </li>
-<<<<<<< Updated upstream
-=======
+
 
                 <li class="nav-item">
                     <a href="{{ url('admin/interview') }}" class="nav-link @if(Request::segment(2) == 'interview') active @endif">
@@ -201,7 +204,6 @@
                     </a>
                 </li>
                 
->>>>>>> Stashed changes
                 
 
                 <li class="nav-item">
@@ -213,8 +215,7 @@
                     </a>
                 </li>
 
-<<<<<<< Updated upstream
-=======
+
             @endif
 
             @if (Auth::user()->is_role == '0')
@@ -275,7 +276,72 @@
                 </li>
 
 
->>>>>>> Stashed changes
+            @endif
+
+            @if (Auth::user()->is_role == '0')
+
+                <li class="nav-item">
+
+                    <a href="{{ url('employee/dashboard') }}"
+                        class="nav-link @if (Request::segment(2) == 'dashboard') active @endif">
+
+                        <i class="nav-icon fa fa-home"></i>
+                        <p>
+                            Dashboard
+                        </p>
+
+
+                <li class="nav-item">
+                    <a href="{{ url('admin/departments') }}"
+                        class="nav-link @if (Request::segment(2) == 'departments') active @endif">
+                        <i class="nav-icon fa fa-building"></i>
+                        <p>
+                            Department
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('admin/manager') }}"
+                        class="nav-link @if (Request::segment(2) == 'manager') active @endif">
+                        <i class="nav-icon fa fa-user"></i>
+                        <p>Manager</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ url('admin/payroll') }}"
+                        class="nav-link @if (Request::segment(2) == 'payroll') active @endif">
+                        <i class="nav-icon fa fa-credit-card"></i>
+                        <p>Pay Roll</p>
+
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ url('employee/my_account') }}" class="nav-link @if (Request::segment(2) == 'my_account') active @endif">
+
+                    <a href="{{ url('admin/my_account') }}" class="nav-link @if (Request::segment(2) == 'my_account') active @endif">
+
+                        <i class="nav-icon fa fa-cog"></i>
+                        <p>My Account</p>
+                    </a>
+
+                </li>
+
+
+
+            @endif
+
+
+                <li class="nav-item">
+                    <a href="{{ url('admin/my_account') }}" class="nav-link @if (Request::segment(2) == 'my_account') active @endif">
+                        <i class="nav-icon fa fa-cog"></i>
+                        <p>My Account</p>
+                    </a>
+
+                </li>
+
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
