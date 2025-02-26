@@ -19,27 +19,24 @@ class JobsModel extends Model
         // return $return;
         $return = self::select('jobs.*');
         //search box start
-        if (!empty(request()->get('id'))) {
-            $return = $return->where('id', '=', request()->get('id'));
+
+        if (!empty(request()->get('titlle'))) {
+            $return = $return->where('titlle', 'like', '%' . request()->get('titlle') . '%');
         }
 
-        if (!empty(request()->get('job_titlle'))) {
-            $return = $return->where('job_titlle', 'like', '%' . request()->get('job_titlle') . '%');
+        if (!empty(request()->get('description'))) {
+            $return = $return->where('description', 'like', '%' . request()->get('description') . '%');
+        }
+        if (!empty(request()->get('status'))) {
+            $return = $return->where('status', 'like', '%' . request()->get('status') . '%');
         }
 
-        if (!empty(request()->get('min_salary'))) {
-            $return = $return->where('min_salary', 'like', '%' . request()->get('min_salary') . '%');
-        }
-        if (!empty(request()->get('max_salary'))) {
-            $return = $return->where('max_salary', 'like', '%' . request()->get('max_salary') . '%');
-        }
-
-        if(!empty(request()->get('start_date')) && !empty(request()->get('end_date'))) {
-            $return = $return->where('jobs.created_at', '>=', request()->get('start_date'))->where('jobs.created_at', '<=', request()->get('end_date'));
+        if(!empty(request()->get('start_at')) && !empty(request()->get('end_at'))) {
+            $return = $return->where('jobs.start_at', '>=', request()->get('start_at'))->where('jobs.end_at', '<=', request()->get('end_at'));
         }
 
         //search box end
-        $return = $return->orderBy('id', 'desc')->paginate(20);
+        $return = $return->orderBy('id', 'desc')->paginate(10);
         return $return;
 
     }
