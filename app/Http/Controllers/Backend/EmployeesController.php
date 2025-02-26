@@ -5,18 +5,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\JobsModel;
-
-use Str;
-use File;
-
-use Hash;
-
+use App\Mail\EmployeesNewCreateMail;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use App\Models\ManagerModel;
 use App\Models\DepartmentsModel;
-
-
 use App\Models\PositionModel;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 
 
 class EmployeesController extends Controller

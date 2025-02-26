@@ -29,7 +29,6 @@
               <div class="inner">
                 <h3>{{ !empty('$getEmployeeCount') ? $getEmployeeCount : '0' }}</h3>
                 <p>Nhân Viên</p>
-                <h3>150</h3>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>

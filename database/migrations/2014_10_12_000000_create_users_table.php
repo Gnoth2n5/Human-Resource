@@ -21,11 +21,11 @@ return new class extends Migration
         // Bảng users (nhân viên)
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('uid')->unique();
+            $table->string('uid')->unique()->nullable();
             $table->string('full_name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('role', ['admin', 'employee'])->default('employee');
+            $table->enum('is_role', ['1', '0'])->default('0');
             $table->string('phone_number')->nullable();
             $table->string('address')->nullable();
             $table->string('avatar')->nullable();

@@ -14,7 +14,7 @@ use App\Models\JobsModel;
 use App\Models\JobHistoryModel;
 use App\Models\RegionsModel;
 use Carbon\Carbon;
-use Auth;
+use Illuminate\Support\Facades\Auth;        
 
 
 
@@ -29,19 +29,19 @@ class DashboardController extends Controller
         $data['getHRCount'] = User::where('is_role', '=', 1)->count();
         $data['getEMPCount'] = User::where('is_role', '=', 0)->count();
 
-        $data['getTotalJobCount'] = JobsModel::count();
-        $data['getJobHCount'] = JobHistoryModel::count();
-        $data['getRegionsCount'] = RegionsModel::count();
+        $data['getTotalJobCount'] = 1;
+        $data['getJobHCount'] = 1;
+        $data['getRegionsCount'] = 1;
 
-        $data['TodayRegion'] = RegionsModel::whereDate('created_at', Carbon::today())->count();
+        $data['TodayRegion'] = 1;
 
-        $data['YesterdayRegion'] = RegionsModel::whereDate('created_at', Carbon::yesterday())->count();
+        $data['YesterdayRegion'] = 1;
 
-        $data['getCountriesCount'] = CountriesModel::count();
-        $data['getLocationsCount'] = LocationsModel::count();
-        $data['getDepartmentsCount'] = DepartmentsModel::count();
-        $data['getManagerCount'] = ManagerModel::count();
-        $data['getPositionCount'] = PositionModel::count();
+        $data['getCountriesCount'] = 1;
+        $data['getLocationsCount'] = 1;
+        $data['getDepartmentsCount'] = 1;
+        $data['getManagerCount'] = 1;
+        $data['getPositionCount'] = 1;
 
         return view('backend.dashboard.list', $data);
 
