@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-
+use App\Mail\ForgotPasswordMail;
 class AuthController extends Controller
 {
     public function index()
@@ -17,6 +17,28 @@ class AuthController extends Controller
     public function forgot_password()
     {
         return view('forgot_password');
+    }
+
+    public function forgot_password_post(Request $request)
+    {
+        //dd($request->all());
+
+        $count = User::where('email', '=', $request->email)->count();
+        if ($count > 0) {
+            $user = User::where('email', '=', $request->email)->first();
+
+            $random_pass = rand(111111, 999999);
+
+            $user->password = Hash::make($random_pass);
+            $user->save();
+
+            $user->random_pass = $random_pass;
+
+            Mail::to($user->email)->send(new ForgotPasswordMail($user));
+            return redirect()->back()->with('success', 'Password has been send email');
+        } else {
+            return redirect()->back()->with('error', 'Email Not Found');
+        }
     }
 
     public function register()
@@ -70,8 +92,10 @@ class AuthController extends Controller
             if (Auth::user()->is_role == '1') {
                 return redirect()->intended('admin/dashboard');
 
-            } else if(Auth::User()->is_role == '0'){
+
+            } else if (Auth::User()->is_role == '0') {
                 return redirect()->intended('employee/dashboard');
+
 
             } else {
                 Auth::logout();
