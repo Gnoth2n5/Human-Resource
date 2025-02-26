@@ -35,6 +35,16 @@ class JobAssignment extends Model
         return $this->belongsTo(JobsModel::class);
     }
 
+    public static function assignJob($userId, $jobId)
+    {
+        return self::create([
+            'user_id' => $userId,
+            'job_id' => $jobId,
+            'status' => 'pending', // Mặc định khi phân công
+        ]);
+    }
+
+
     // Kiểm tra xem công việc đã hoàn thành hay chưa
     public function isCompleted()
     {

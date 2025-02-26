@@ -20,13 +20,14 @@ class JobsModel extends Model
         $return = self::select('jobs.*');
         //search box start
 
-        if (!empty(request()->get('titlle'))) {
-            $return = $return->where('titlle', 'like', '%' . request()->get('titlle') . '%');
+        if (!empty(request()->get('title'))) {
+            $return = $return->where('title', 'like', '%' . request()->get('titlle') . '%');
         }
 
         if (!empty(request()->get('description'))) {
             $return = $return->where('description', 'like', '%' . request()->get('description') . '%');
         }
+
         if (!empty(request()->get('status'))) {
             $return = $return->where('status', 'like', '%' . request()->get('status') . '%');
         }
