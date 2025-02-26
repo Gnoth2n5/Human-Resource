@@ -34,39 +34,25 @@
 
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-lable">Grade Level<span
+                                        <label class="col-sm-2 col-form-lable">Tên cấp<span
                                                 style="color: red">*</span></label>
                                         <div class="col-sm-10">
-                                            <input type="text" value="{{ old('grade_level') }}" name="grade_level"
-                                                class="form-control" required placeholder="Enter Grade Level">
-                                            <span style="color: red">{{ $errors->first('grade_level') }}</span>
+                                            <input type="text" value="{{ old('grade_name') }}" name="grade_name"
+                                                class="form-control" required placeholder="Enter Grade Name">
+                                            <span style="color: red">{{ $errors->first('grade_name') }}</span>
 
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-lable">Lowest Sal<span
+                                        <label class="col-sm-2 col-form-lable">Hệ số lương<span
                                                 style="color: red">*</span></label>
                                         <div class="col-sm-10">
-                                            <input type="number" value="{{ old('lowest_sal') }}" name="lowest_sal"
-                                                class="form-control" required placeholder="Enter Lowest Sal">
-                                                <span style="color: red">{{$errors->first('lowest_sal')}}</span>
+                                            <input type="number" value="{{ old('salary_multiplier') }}" name="salary_multiplier"
+                                                class="form-control" required placeholder="Enter salary_multiplier">
+                                                <span style="color: red">{{$errors->first('salary_multiplier')}}</span>
                                         </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-lable">Highest Sal <span
-                                                style="color: red">*</span></label>
-                                        <div class="col-sm-10">
-                                            <input type="number" value="{{ old('highest_sal') }}" name="highest_sal"
-                                                class="form-control" required placeholder="Enter Highest Sal">
-                                                <span style="color: red">{{$errors->first('highest_sal')}}</span>
-                                        </div>
-                                    </div>
-
-
-
-
+                                   
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Thêm</button>

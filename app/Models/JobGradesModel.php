@@ -27,25 +27,17 @@ class JobGradesModel extends Model
                     $return = $return->where('id', '=', request()->get('id'));
                 }
 
-                if(!empty(request()->get('grade_level')))
+                if(!empty(request()->get('grade_name')))
                 {
-                    $return = $return->where('grade_level', 'like', '%' .request()->get('grade_level'). '%');
+                    $return = $return->where('grade_name', 'like', '%' .request()->get('grade_name'). '%');
                 }
 
-                if(!empty(request()->get('lowest_sal')))
+                if(!empty(request()->get('salary_multiplier')))
                 {
-                    $return = $return->where('lowest_sal', 'like', '%' .request()->get('lowest_sal'). '%');
+                    $return = $return->where('salary_multiplier', 'like', '%' .request()->get('salary_multiplier'). '%');
                 }
 
-                if(!empty(request()->get('highest_sal')))
-                {
-                    $return = $return->where('highest_sal', 'like', '%' .request()->get('highest_sal'). '%');
-                }
-
-                if(!empty(request()->get('updated_at')))
-                {
-                    $return = $return->where('updated_at', 'like', '%' .request()->get('updated_at'). '%');
-                }
+              
              
              // Search Box End
         $return = $return->orderBy('id', 'desc')  

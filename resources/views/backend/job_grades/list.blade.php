@@ -43,29 +43,15 @@
                                     </div>
 
                                     <div class="form-group col-md-3">
-                                        <label>Grade Level</label>
-                                        <input type="text" name="grade_level" class="form-control" value="{{ Request()->grade_level }}" placeholder="Grade Level">
+                                        <label>Tên cấp độ</label>
+                                        <input type="text" name="grade_name" class="form-control" value="{{ Request()->grade_name }}" placeholder="Cấp độ">
                                     </div>
 
                                     <div class="form-group col-md-2">
-                                        <label>Lowest Sal</label>
-                                        <input type="number" name="lowest_sal" class="form-control" value="{{ Request()->lowest_sal }}" placeholder="Lowest Sal">
+                                        <label>Hệ số lương</label>
+                                        <input type="number" name="salary_multiplier" class="form-control" value="{{ Request()->salary_multiplier }}" placeholder="Hệ số lương">
                                     </div>
 
-                                    <div class="form-group col-md-2">
-                                        <label>Highest Sal</label>
-                                        <input type="number" name="highest_sal" class="form-control" value="{{ Request()->highest_sal }}" placeholder="Highest Sal">
-                                    </div>
-
-                                    <div class="form-group col-md-2">
-                                        <label>Created At</label>
-                                        <input type="date" name="created_at" class="form-control" value="{{ Request()->created_at }}" >
-                                    </div>
-
-                                    <div class="form-group col-md-2">
-                                        <label>Updated At</label>
-                                        <input type="date" name="updated_at" class="form-control" value="{{ Request()->updated_at }}" >
-                                    </div>
 
                                     <div class="form-group col-md-2">
                                         <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Search</button>
@@ -89,11 +75,8 @@
                                 <thead>
                                    <tr>
                                     <th>ID</th>
-                                    <th>Grade Level</th>
-                                    <th>Lowest Sal</th>
-                                    <th>Highest Sal</th>
-                                    <th>Created At</th>
-                                    <th>Updated At</th>
+                                    <th>Tên cấp</th>
+                                    <th>Hệ số lương</th>
                                     <th>Action</th>
                                    </tr>
                                 </thead>
@@ -101,11 +84,8 @@
                                    @forelse($getRecord as $value)
                                     <tr>
                                         <td>{{ $value->id }}</td>
-                                        <td>{{ $value->grade_level }}</td>
-                                        <td>{{ $value->lowest_sal }}</td>
-                                        <td>{{ $value->highest_sal }}</td>
-                                        <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
-                                        <td>{{ date('d-m-Y H:i A', strtotime($value->updated_at)) }}</td>
+                                        <td>{{ $value->grade_name }}</td>
+                                        <td>{{ $value->salary_multiplier }}</td>
                                         <td>
                                             <a href="{{ url('admin/job_grades/edit/'.$value->id ) }}" class="btn btn-primary">Edit</a>
                                             <a href="{{ url('admin/job_grades/delete/'.$value->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
