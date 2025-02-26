@@ -26,14 +26,18 @@
         </div>
         <!-- /.login-logo -->
         <div class="card">
+            @include('_message')
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Forgot Password</p>
-                <form action="" method="post">
+                <form action="{{ url('forgot-password/post') }}
+                " method="post">
+                {{ csrf_field() }}
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email" />
+                        <input type="email" class="form-control" placeholder="Email" name="email" />
+                        
                         <div class="input-group-text"><span class="bi bi-envelope"></span></div>
                     </div>
-
+                    <span style=" color: red;">{{$errors->first('password')}}</span>
                     <!--begin::Row-->
                     <div class="row">
                         <div class="col-8">

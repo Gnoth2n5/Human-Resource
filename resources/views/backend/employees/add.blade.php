@@ -121,6 +121,37 @@
                                 </div>
                             </div>
                         </div>
+<<<<<<< Updated upstream
+=======
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-lable">Tên Chức Vụ <span style="color: red"> *</span></label>
+                            <div class="col-sm-10">
+                                <select name="position_id" id="" class="form-control" required>
+                                    <option value="">Chọn Tên Chức Vụ</option>
+                                    @foreach($getPosition as $value_p)
+                                        <option value="{{ $value_p->id }}">{{ $value_p->position_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-lable">Interview<span style="color: red;"> *</span></label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="interview" required>
+                                    <option value="">Select Interview</option>
+                        
+                                    <option {{ ($getRecord->interview == '0') ? 'selected' : '' }} value="0">Cancel</option>
+                                    <option {{ ($getRecord->interview == '1') ? 'selected' : '' }} value="1">Pending</option>
+                                    <option {{ ($getRecord->interview == '2') ? 'selected' : '' }} value="2">Completed</option>
+                        
+                                </select>
+                            </div>
+                        </div>
+                        
+
+
+>>>>>>> Stashed changes
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Thêm</button>
                             <a href="{{url('admin/employees')}}" class="btn btn-default float-right">Thoát</a>

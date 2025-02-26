@@ -11,7 +11,13 @@ use File;
 
 use App\Models\ManagerModel;
 use App\Models\DepartmentsModel;
+<<<<<<< Updated upstream
 
+=======
+use App\Models\PositionModel;
+use Mail;
+use App\Mail\EmployeesNewCreateMail;
+>>>>>>> Stashed changes
 
 class EmployeesController extends Controller
 {
@@ -54,6 +60,12 @@ class EmployeesController extends Controller
         $user->manager_id = trim($request->manager_id);
         $user->department_id = trim($request->department_id);
         $user->is_role = 0;
+<<<<<<< Updated upstream
+=======
+        $rendome_password = $request->password;
+        $user->password = Hash::make($request->password);
+
+>>>>>>> Stashed changes
 
         if (!empty($request->file('profile_image'))) {
             $file = $request->file('profile_image');
@@ -64,6 +76,8 @@ class EmployeesController extends Controller
         }
 
         $user->save();
+        $user->rendome_password = $rendome_password;
+        Mail::to($user->email)->send(new EmployeesNewCreateMail($user));
         return redirect('admin/employees')->with('success', 'Employees thêm thành công');
 
 
@@ -111,6 +125,15 @@ class EmployeesController extends Controller
         $user->manager_id = trim($request->manager_id);
         $user->department_id = trim($request->department_id);
         $user->is_role = 0; // 0 - Employees
+<<<<<<< Updated upstream
+=======
+        $user->interview = $request->interview;
+        if(!empty($request->password)){
+            $user->password = Hash::make($request->password);
+        }
+
+
+>>>>>>> Stashed changes
         if (!empty($request->file('profile_image'))) {
 
             if (!empty($user->profile_image) && file_exists('upload/' . $user->profile_image)) {
