@@ -42,37 +42,20 @@ class EmployeesController extends Controller
     public function add_post(Request $request)
     {
         $user = request()->validate([
-            'name' => 'required',
-            'password' => 'required',
-            'last_name' => 'required',
+            'full_name' => 'required',
             'email' => 'required|unique:users',
-            'hire_date' => 'required',
-            'job_id' => 'required',
-            'salary' => 'required|numeric|min:0.01',
-            'commission_pct' => 'required|numeric|min:0',
-            'manager_id' => 'required',
-            'department_id' => 'required',
-            'phone_number' => 'required'
+            'phone_number' => 'required',
+            'address' => 'required',
+            
         ]);
         $user = new User;
-        $user->name = trim($request->name);
-        $user->last_name = trim($request->last_name);
+        $user->full_name = trim($request->full_name);
         $user->email = trim($request->email);
         $user->phone_number = trim($request->phone_number);
-        $user->hire_date = trim($request->hire_date);
-        $user->job_id = trim($request->job_id);
-        $user->salary = trim($request->salary);
-        $user->commission_pct = trim($request->commission_pct);
-        $user->manager_id = trim($request->manager_id);
-        $user->department_id = trim($request->department_id);
-        $user->position_id = trim($request->position_id);
-        $user->is_role = 0;
+        $user->address = trim($request->address);
 
-        $rendome_password = $request->password;
-        $user->password = Hash::make($request->password);
-
-        if (!empty($request->file('profile_image'))) {
-            $file = $request->file('profile_image');
+        if (!empty($request->file('avatar'))) {
+            $file = $request->file('avatar');
             $randomStr = Str::random(30);
             $filename = $randomStr . '.' . $file->getClientOriginalExtension();
             $file->move('upload/', $filename);
@@ -80,7 +63,6 @@ class EmployeesController extends Controller
         }
 
         $user->save();
-        $user->rendome_password = $rendome_password;
         Mail::to($user->email)->send(new EmployeesNewCreateMail($user));
         return redirect('admin/employees')->with('success', 'Employees thêm thành công');
 
@@ -93,59 +75,33 @@ class EmployeesController extends Controller
     }
 
     public function edit($id){
-
-        $data['getPosition'] = PositionModel::get();
-
-        $data['getDepartments'] = DepartmentsModel::get();
-        $data['getManager'] = ManagerModel::get();
-
-        $data['getRecord']=User::find($id);
-
-        $data['getJobs'] = JobsModel::get();
-        return view('backend.employees.edit', $data);
+        return view('backend.employees.edit');
     }
     public function edit_update($id, Request $request)
     {
         $request->validate([
             'email' => 'required|unique:users,email,' . $id,
-            'name' => 'required',
-            'last_name' => 'required',
-            'hire_date' => 'required',
-            'job_id' => 'required',
-            'salary' => 'required|numeric|min:0.01',
-            'commission_pct' => 'required|numeric|min:0',
-            'manager_id' => 'required',
-            'department_id' => 'required',
-            'phone_number' => 'required'
+            'full_name' => 'required',
+            'phone_number' => 'required',
+            'address' => 'required',
         ]);
 
         $user = User::find($id);
-        $user->name = trim($request->name);
-        $user->last_name = trim($request->last_name);
+        $user->full_name = trim($request->full_name);
         $user->email = trim($request->email);
         $user->phone_number = trim($request->phone_number);
-        $user->hire_date = trim($request->hire_date);
-        $user->job_id = trim($request->job_id);
-        $user->salary = trim($request->salary);
-        $user->commission_pct = trim($request->commission_pct);
-        $user->manager_id = trim($request->manager_id);
-        $user->department_id = trim($request->department_id);
-        $user->position_id = trim($request->position_id);
-        $user->is_role = 0; // 0 - Employees
+        $user->address = trim($request->address);
+       
 
-        $user->interview = $request->interview;
+        
 
-        if(!empty($request->password)){
-            $user->password = Hash::make($request->password);
-        }
+        if (!empty($request->file('avatar'))) {
 
-        if (!empty($request->file('profile_image'))) {
-
-            if (!empty($user->profile_image) && file_exists('upload/' . $user->profile_image)) {
-                unlink('upload/' . $user->profile_image);
+            if (!empty($user->avatar) && file_exists('upload/' . $user->avatar)) {
+                unlink('upload/' . $user->avatar);
             }
 
-            $file = $request->file('profile_image');
+            $file = $request->file('avatar');
             $randomStr = Str::random(30);
             $filename = $randomStr . '.' . $file->getClientOriginalExtension();
             $file->move('upload/', $filename);
