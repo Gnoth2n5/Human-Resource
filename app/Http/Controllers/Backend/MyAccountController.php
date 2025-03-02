@@ -29,6 +29,8 @@ class MyAccountController extends Controller
         $user = User::find(Auth::user()->id);
         $user->full_name = trim($request->full_name);
         $user->email = trim($request->email);
+        $user->phone_number = trim($request->phone_number);
+        $user->address = trim($request->address);
 
         if(!empty($request->password)){
             $user->password = trim($request->password);
