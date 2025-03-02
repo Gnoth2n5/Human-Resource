@@ -68,7 +68,7 @@ class Jobs extends Model
         ]);
     }
 
-    public static function markAsCompleted()
+    public function markAsCompleted()
     {
         return self::update([
             'status' => 'completed',

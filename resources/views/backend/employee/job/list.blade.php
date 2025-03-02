@@ -10,20 +10,7 @@
                     <div class="col-sm-6">
                         <h1 class="m-0">Công việc</h1>
                     </div><!-- /.col -->
-                    <div class="col-sm-6 d-flex justify-content-end">
-
-                        <form action="{{ url('admin/jobs_export') }}" method="get">
-
-                            <input type="hidden" name="start_date" value="{{ Request()->start_at }}">
-                            <input type="hidden" name="end_date" value="{{ Request()->end_at }}">
-
-                            <a class="btn btn-success"
-                                href="{{ url('admin/jobs_export?start_date=' . request()->get('start_date') . request()->get('end_date')) }}">Xuất
-                                Excel</a>
-                        </form>
-
-                        <a href="{{ url('admin/jobs/add') }}" class="btn btn-primary mx-2">Thêm Việc Làm</a>
-                    </div><!-- /.col -->
+                    
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>

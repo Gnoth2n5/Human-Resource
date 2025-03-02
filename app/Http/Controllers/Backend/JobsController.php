@@ -138,7 +138,8 @@ class JobsController extends Controller
         $jobAss = JobAssignment::find($id);
         $jobAss->markAsCompleted($request->note);
 
-        // $job
+        $job = Jobs::find($jobAss->job_id);
+        $job->markAsCompleted();
 
         return redirect('employee/my_jobs')->with('success', 'Công Việc Đã Hoàn Thành');
     }
