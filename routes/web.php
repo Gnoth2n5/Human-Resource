@@ -8,9 +8,10 @@ use App\Http\Controllers\Backend\EmployeesController;
 
 
 use App\Http\Controllers\Backend\DepartmentController;
-
+use App\Http\Controllers\Backend\JobsController;
 use App\Http\Controllers\Backend\MyAccountController;
-
+use App\Http\Controllers\SalaryTransactionController;
+use App\Models\Salary;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,16 +53,25 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/my_account/update', [MyAccountController::class, 'edit_update']);
     // my Account end
 
-    Route::get('admin/employees/image_delete/{id}', [EmployeesController::class, 'image_delete']);
-
   
 });
 
 Route::group(['middleware' => 'employee'], function () {
     Route::get('employee/dashboard', [DashboardController::class, 'dashboard']);
 
-    Route::get('employee/my_account', [MyAccountController::class, 'employee_my_account']);
-    Route::post('employee/my_account/update', [MyAccountController::class, 'employee_my_account_update']);
+    Route::get('employee/my_jobs', [JobsController::class, 'index']);
+    Route::get('employee/my_salary', [SalaryTransactionController::class, 'index']);
+    
+    Route::get('employee/my_jobs/view/{id}', [JobsController::class, 'view_job']);
+
+    Route::post('employee/my_jobs/complete/{id}', [JobsController::class, 'complete_job']);
+    // Route::post('employee/my_jobs/complete/{id}', fn() => 'helô');
+
+
+
+
+    Route::get('employee/my_account', [MyAccountController::class, 'my_account']);
+    Route::post('employee/my_account/update', [MyAccountController::class, 'edit_update']);
 });
 
 Route::get('logout', [AuthController::class, 'logout']);

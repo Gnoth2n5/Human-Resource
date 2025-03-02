@@ -8,13 +8,26 @@ use App\Models\User;
 use App\Models\Jobs;
 use App\Exports\JobsExport;
 use App\Models\JobAssignment;
+use Illuminate\Support\Facades\Auth;
 
 class JobsController extends Controller
 {
     public function index(Request $request)
     {
-        $data['getRecord'] = Jobs::getRecord($request);
-        return view('backend.jobs.list', $data);
+        if (Auth::user()->is_role == 1) {
+            $data['getRecord'] = Jobs::getRecord($request);
+            return view('backend.jobs.list', $data);
+        } else {
+
+            $data['getRecord'] = JobAssignment::with('job')
+                ->where('user_id', Auth::user()->id)
+                ->orderByRaw("CASE WHEN status = 'in_progress' THEN 1 ELSE 2 END")
+                // ->orderBy('created_at', 'desc') // Có thể thêm sắp xếp thứ hai nếu cần
+                ->paginate(10);
+
+
+            return view('backend.employee.job.list', $data);
+        }
     }
 
     public function jobs_export(Request $request)
@@ -111,5 +124,23 @@ class JobsController extends Controller
         $recordDelete = Jobs::find($id);
         $recordDelete->delete();
         return redirect()->back()->with('error', 'Việc Làm Xóa Thành Công');
+    }
+
+    public function view_job($id)
+    {
+        $data['getRecord'] = Jobs::find($id);
+
+        return view('backend.employee.job.view', $data);
+    }
+
+    public function complete_job(Request $request, $id)
+    {
+        $jobAss = JobAssignment::find($id);
+        $jobAss->markAsCompleted($request->note);
+
+        $job = Jobs::find($jobAss->job_id);
+        $job->markAsCompleted();
+
+        return redirect('employee/my_jobs')->with('success', 'Công Việc Đã Hoàn Thành');
     }
 }
