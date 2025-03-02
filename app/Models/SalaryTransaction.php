@@ -27,6 +27,12 @@ class SalaryTransaction extends Model
         return $return;
     }
 
+    public static function getRecordByUserId($id)
+    {
+        $return = self::with(['user', 'salary'])->where('user_id', $id)->paginate(10);
+        return $return;
+    }
+
     // Hàm này dùng để hiển thị lương theo định dạng tiền Việt
     public function getFormattedTotalSalaryAttribute()
     {

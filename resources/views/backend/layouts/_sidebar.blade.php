@@ -30,7 +30,11 @@
                             ['url' => 'admin/payroll', 'icon' => 'fa-credit-card', 'text' => 'Pay Roll'],
                             ['url' => 'admin/history-salary', 'icon' => 'fa-history', 'text' => 'History Salary'],
                         ],
-                        'employee' => [['url' => 'employee/dashboard', 'icon' => 'fa-home', 'text' => 'Dashboard']],
+                        'employee' => [
+                            ['url' => 'employee/dashboard', 'icon' => 'fa-home', 'text' => 'Dashboard'],
+                            ['url' => 'employee/my_jobs', 'icon' => 'fa-briefcase', 'text' => 'My Jobs'],
+                            ['url' => 'employee/my_salary', 'icon' => 'fa-credit-card', 'text' => 'My Salary'],
+                        ],
                     ];
                 @endphp
 
