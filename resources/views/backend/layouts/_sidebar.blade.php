@@ -27,8 +27,18 @@
                             ['url' => 'admin/employees', 'icon' => 'fa-users', 'text' => 'Nhân viên'],
                             ['url' => 'admin/jobs', 'icon' => 'fa-briefcase', 'text' => 'Công việc'],
                             ['url' => 'admin/departments', 'icon' => 'fa-building', 'text' => 'Phòng ban'],
+<<<<<<< Updated upstream
                             ['url' => 'admin/payroll', 'icon' => 'fa-credit-card', 'text' => 'Lương'],
                             ['url' => 'admin/history-salary', 'icon' => 'fa-history', 'text' => 'Lịch sử lương'],
+=======
+                            ['url' => 'admin/payroll', 'icon' => 'fa-credit-card', 'text' => 'Bảng lương'],
+                            ['url' => 'admin/history-salary', 'icon' => 'fa-history', 'text' => 'Lịch sử lương'],
+                        ],
+                        'employee' => [
+                            ['url' => 'employee/dashboard', 'icon' => 'fa-home', 'text' => 'Trang chủ'],
+                            ['url' => 'employee/my_jobs', 'icon' => 'fa-briefcase', 'text' => 'Công việc của tôi'],
+                            ['url' => 'employee/my_salary', 'icon' => 'fa-credit-card', 'text' => 'Lương của tôi'],
+>>>>>>> Stashed changes
                         ],
                         'employee' => [['url' => 'employee/dashboard', 'icon' => 'fa-home', 'text' => 'Trang chủ']],
                     ];
