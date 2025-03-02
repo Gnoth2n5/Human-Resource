@@ -20,7 +20,7 @@ class MyAccountController extends Controller
         $use = request()->validate([
             'full_name' => 'required',
             'email' => 'required|unique:users,email,'.Auth::user()->id,
-            'password' => 'nullable|min:6',
+            'password' => 'nullable|min:8',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'phone_number' => 'required',
             'address' => 'required',
