@@ -23,14 +23,14 @@
                     $role = Auth::user()->is_role;
                     $routes = [
                         'admin' => [
-                            ['url' => 'admin/dashboard', 'icon' => 'fa-home', 'text' => 'Dashboard'],
-                            ['url' => 'admin/employees', 'icon' => 'fa-users', 'text' => 'Employees'],
-                            ['url' => 'admin/jobs', 'icon' => 'fa-briefcase', 'text' => 'Jobs'],
-                            ['url' => 'admin/departments', 'icon' => 'fa-building', 'text' => 'Department'],
-                            ['url' => 'admin/payroll', 'icon' => 'fa-credit-card', 'text' => 'Pay Roll'],
-                            ['url' => 'admin/history-salary', 'icon' => 'fa-history', 'text' => 'History Salary'],
+                            ['url' => 'admin/dashboard', 'icon' => 'fa-home', 'text' => 'Trang chủ'],
+                            ['url' => 'admin/employees', 'icon' => 'fa-users', 'text' => 'Nhân viên'],
+                            ['url' => 'admin/jobs', 'icon' => 'fa-briefcase', 'text' => 'Công việc'],
+                            ['url' => 'admin/departments', 'icon' => 'fa-building', 'text' => 'Phòng ban'],
+                            ['url' => 'admin/payroll', 'icon' => 'fa-credit-card', 'text' => 'Lương'],
+                            ['url' => 'admin/history-salary', 'icon' => 'fa-history', 'text' => 'Lịch sử lương'],
                         ],
-                        'employee' => [['url' => 'employee/dashboard', 'icon' => 'fa-home', 'text' => 'Dashboard']],
+                        'employee' => [['url' => 'employee/dashboard', 'icon' => 'fa-home', 'text' => 'Trang chủ']],
                     ];
                 @endphp
 
@@ -44,20 +44,20 @@
                     </li>
                 @endforeach
 
-                <!-- My Account (chung cho cả Admin & Employee) -->
+                <!-- Tài khoản của tôi (chung cho cả Admin & Employee) -->
                 <li class="nav-item">
                     <a href="{{ url($role == '1' ? 'admin/my_account' : 'employee/my_account') }}"
                         class="nav-link @if (Request::segment(2) == 'my_account') active @endif">
                         <i class="nav-icon fa fa-cog"></i>
-                        <p>My Account</p>
+                        <p>Tài khoản của tôi</p>
                     </a>
                 </li>
 
-                <!-- Logout -->
+                <!-- Đăng xuất -->
                 <li class="nav-item">
                     <a href="{{ url('logout') }}" class="nav-link">
                         <i class="nav-icon fa fa-sign-out-alt"></i>
-                        <p>Logout</p>
+                        <p>Đăng xuất</p>
                     </a>
                 </li>
             </ul>
