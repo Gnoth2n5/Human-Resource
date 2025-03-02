@@ -52,16 +52,14 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/my_account/update', [MyAccountController::class, 'edit_update']);
     // my Account end
 
-    Route::get('admin/employees/image_delete/{id}', [EmployeesController::class, 'image_delete']);
-
   
 });
 
 Route::group(['middleware' => 'employee'], function () {
     Route::get('employee/dashboard', [DashboardController::class, 'dashboard']);
 
-    Route::get('employee/my_account', [MyAccountController::class, 'employee_my_account']);
-    Route::post('employee/my_account/update', [MyAccountController::class, 'employee_my_account_update']);
+    Route::get('employee/my_account', [MyAccountController::class, 'my_account']);
+    Route::post('employee/my_account/update', [MyAccountController::class, 'edit_update']);
 });
 
 Route::get('logout', [AuthController::class, 'logout']);

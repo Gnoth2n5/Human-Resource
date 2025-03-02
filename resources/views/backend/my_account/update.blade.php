@@ -29,7 +29,7 @@
 
                         <div class="card card-info">
                             <div class="card-header">
-                                <h3 class="card-title">Thêm Tài Khoản</h3>
+                                <h3 class="card-title">Thông tin Tài Khoản</h3>
                             </div>
 
                             <form class="form-horizontai" method="post" action="{{ url('admin/my_account/update') }}"
@@ -37,6 +37,7 @@
 
                                 {{ csrf_field() }}
                                 <div class="card-body">
+
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-lable">Họ Tên <span
                                                 style="color: red">*</span></label>
@@ -46,6 +47,30 @@
 
                                         </div>
                                         <span style="color: red;">{{ $errors->first('full_name') }}</span>
+
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-lable">Địa chỉ <span
+                                                style="color: red">*</span></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" value="{{ $getRecord->address }}" name="address"
+                                                class="form-control" required placeholder="Nhập Tên">
+
+                                        </div>
+                                        <span style="color: red;">{{ $errors->first('address') }}</span>
+
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-lable">Số điện thoại <span
+                                                style="color: red">*</span></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" value="{{ $getRecord->phone_number }}" name="phone_number"
+                                                class="form-control" required placeholder="Nhập Tên">
+
+                                        </div>
+                                        <span style="color: red;">{{ $errors->first('phone_number') }}</span>
 
                                     </div>
 
