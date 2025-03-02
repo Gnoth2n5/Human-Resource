@@ -4,13 +4,10 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\JobsModel;
 use App\Mail\EmployeesNewCreateMail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use App\Models\ManagerModel;
-use App\Models\DepartmentsModel;
-use App\Models\PositionModel;
+
 use Illuminate\Support\Facades\Mail;
 
 
@@ -23,21 +20,9 @@ class EmployeesController extends Controller
     }
 
 
-    public function image_delete($id, Request $request){
-        $deleteRecord = User::find($id);
-        $deleteRecord->profile_image = $request->profile_image;
-        $deleteRecord->save();
-        return redirect()->back()->with('error', 'Ảnh Đại Diện đã xóa thành công');
-    }
-
-    public function add(Request $request){
-        $data['getPosition'] = PositionModel::get();
-
-        $data['getDepartments'] = DepartmentsModel::get();
-        $data['getManager'] = ManagerModel::get();
-
-        $data['getJobs'] = JobsModel::get();
-        return view('backend.employees.add', $data);
+    public function add(Request $request)
+    {
+        return view('backend.employees.add');
     }
     public function add_post(Request $request)
     {
@@ -46,13 +31,13 @@ class EmployeesController extends Controller
             'email' => 'required|unique:users',
             'phone_number' => 'required',
             'address' => 'required',
-            
         ]);
         $user = new User;
         $user->full_name = trim($request->full_name);
         $user->email = trim($request->email);
         $user->phone_number = trim($request->phone_number);
         $user->address = trim($request->address);
+        $user->password = Hash::make('12345678');
 
         if (!empty($request->file('avatar'))) {
             $file = $request->file('avatar');
@@ -63,10 +48,11 @@ class EmployeesController extends Controller
         }
 
         $user->save();
-        Mail::to($user->email)->send(new EmployeesNewCreateMail($user));
+
+        User::saveUID($request->full_name, $user->id);
+
+        // Mail::to($user->email)->send(new EmployeesNewCreateMail($user));
         return redirect('admin/employees')->with('success', 'Employees thêm thành công');
-
-
     }
     public function view($id)
     {
@@ -75,7 +61,8 @@ class EmployeesController extends Controller
     }
 
     public function edit($id){
-        return view('backend.employees.edit');
+        $data['getRecord'] = User::find($id);
+        return view('backend.employees.edit', $data);
     }
     public function edit_update($id, Request $request)
     {
@@ -91,9 +78,6 @@ class EmployeesController extends Controller
         $user->email = trim($request->email);
         $user->phone_number = trim($request->phone_number);
         $user->address = trim($request->address);
-       
-
-        
 
         if (!empty($request->file('avatar'))) {
 
@@ -110,12 +94,22 @@ class EmployeesController extends Controller
 
         $user->save();
 
+
         return redirect('admin/employees')->with('success', 'Employees cập nhật thành công.');
 
     }
     public function delete($id)
-    {
+    {   
+
         $recordDelete = User::find($id);
+        if(empty($recordDelete)){
+            return redirect()->back()->with('error', 'Employees không tồn tại');
+        }
+
+        if (!empty($recordDelete->avatar) && file_exists('upload/' . $recordDelete->avatar)) {
+            unlink('upload/' . $recordDelete->avatar);
+        }
+
         $recordDelete->delete();
         return redirect()->back()->with('error', 'Employees xóa thành công');
 

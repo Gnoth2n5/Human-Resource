@@ -12,12 +12,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\JobGradesModel::factory(5)->create();
-        \App\Models\User::factory(20)->create();
+        \App\Models\Department::factory(5)->create();
+        \App\Models\User::factory(50)->create();
+        \App\Models\Jobs::factory(100)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        \App\Models\User::factory()->create([
+            'full_name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'is_role' => 1,
+        ]);
     }
 }

@@ -32,17 +32,31 @@ class JobAssignment extends Model
     // Quan hệ với Job (công việc)
     public function job()
     {
-        return $this->belongsTo(JobsModel::class);
+        return $this->belongsTo(Jobs::class);
     }
 
-    public static function assignJob($userId, $jobId)
+    public static function assignOrUpdateJob($userId, $jobId)
     {
-        return self::create([
-            'user_id' => $userId,
-            'job_id' => $jobId,
-            'status' => 'pending', // Mặc định khi phân công
-        ]);
+        // Nếu $userId rỗng hoặc bằng 0, xóa phân công và mở lại công việc
+        if (empty($userId) || $userId == 0) {
+            JobAssignment::where('job_id', $jobId)->delete();
+            Jobs::find($jobId)->markAsOpen();
+            return;
+        }
+
+        // Cập nhật hoặc tạo mới JobAssignment
+        JobAssignment::updateOrCreate(
+            ['job_id' => $jobId], // Điều kiện tìm kiếm
+            [
+                'user_id' => $userId,
+                'status' => 'in_progress'
+            ] // Dữ liệu cập nhật hoặc tạo mới
+        );
+
+        // Cập nhật trạng thái công việc
+        Jobs::find($jobId)->markAsProgress();
     }
+
 
 
     // Kiểm tra xem công việc đã hoàn thành hay chưa

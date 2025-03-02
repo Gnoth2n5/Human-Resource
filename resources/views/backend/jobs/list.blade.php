@@ -21,7 +21,7 @@
                                 href="{{ url('admin/jobs_export?start_date=' . request()->get('start_date') . request()->get('end_date')) }}">Xuất
                                 Excel</a>
                         </form>
-                
+
                         <a href="{{ url('admin/jobs/add') }}" class="btn btn-primary mx-2">Thêm Việc Làm</a>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -70,8 +70,8 @@
                                         <div class="form-group col-md-3 mt-3">
                                             <button class="btn btn-primary" type="submit" style="">Tìm
                                                 kiếm</button>
-                                            <a href="{{ url('admin/jobs') }}" class="btn btn-success"
-                                                style="">Khôi phục</a>
+                                            <a href="{{ url('admin/jobs') }}" class="btn btn-success" style="">Khôi
+                                                phục</a>
                                         </div>
 
                                     </div>
@@ -101,7 +101,15 @@
                                             <tr>
                                                 <td>{{ $i++ }}</td>
                                                 <td>{{ $value->title }}</td>
-                                                <td>{{ $value->status }}</td>
+                                                <td>
+                                                    @if ($value->status == 'open')
+                                                        <span class="badge badge-success">Chưa phân công</span>
+                                                    @elseif ($value->status == 'in_progress')
+                                                        <span class="badge badge-danger">Đang được làm</span>
+                                                    @elseif ($value->status == 'completed')
+                                                        <span class="badge badge-primary">Đã hoàn thành</span>
+                                                    @endif
+                                                </td>
                                                 <td>{{ $value->start_at }}</td>
                                                 <td>{{ $value->end_at }}</td>
                                                 <td>

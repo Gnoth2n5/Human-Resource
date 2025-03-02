@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\JobsModel;
+use App\Models\Jobs;
 use App\Exports\JobsExport;
-
+use App\Models\JobAssignment;
 
 class JobsController extends Controller
 {
     public function index(Request $request)
     {
-        $data['getRecord'] = JobsModel::getRecord($request);
+        $data['getRecord'] = Jobs::getRecord($request);
         return view('backend.jobs.list', $data);
     }
 
@@ -26,63 +26,89 @@ class JobsController extends Controller
 
     public function add()
     {
-        return view('backend.jobs.add');
+        $users = User::get_user();
+
+        return view('backend.jobs.add', compact('users'));
     }
 
     public function add_post(Request $request)
     {
         // dd($request->all());
 
-        $user = request()->validate([
-            'job_title' => 'required',
-            'min_salary' => 'required',
-            'max_salary' => 'required',
-
+        $job = request()->validate([
+            'title' => 'required',
+            'start_at' => 'required',
+            'end_at' => 'required',
         ]);
-        $user = new JobsModel;
-        $user->job_titlle = trim($request->job_titlle);
-        $user->min_salary = trim($request->min_salary);
-        $user->max_salary = trim($request->max_salary);
 
-        $user->save();
+        $job = new Jobs;
+
+        $job->title = trim($request->title);
+        $job->description = trim($request->description);
+        $job->start_at = trim($request->start_at);
+        $job->end_at = trim($request->end_at);
+
+        $job->save();
+
+        if ($request->assign) {
+            JobAssignment::assignOrUpdateJob($request->assign, $job->id);
+        }
+
+
         return redirect('admin/jobs')->with('success', 'Việc Làm Thêm Thành Công');
     }
 
     public function view($id, Request $request)
     {
-        $data['getRecord'] = JobsModel::find($id);
+        $data['getRecord'] = Jobs::with('assignedUsers.department')->find($id);
+
+        // \dd($data['getRecord']);
+
         return view('backend.jobs.view', $data);
     }
 
     public function edit($id)
     {
-        $data['getRecord'] = JobsModel::find($id);
+        $data['job'] = Jobs::find($id);
+        $data['assign'] = JobAssignment::where('job_id', $id)->pluck('user_id') ?? [];
+
+        // \dd($data['assign']);
+
+        $data['users'] = User::get_user();
         return view('backend.jobs.edit', $data);
     }
 
     public function edit_update(Request $request, $id)
     {
 
-        $user = request()->validate([
-            'job_title' => 'required',
-            'min_salary' => 'required',
-            'max_salary' => 'required',
-
+        $job = request()->validate([
+            'title' => 'required',
+            'start_at' => 'required',
+            'end_at' => 'required',
         ]);
 
-        $user = JobsModel::find($id);
+        $job = Jobs::find($id);
 
-        $user->job_titlle = trim($request->job_titlle);
-        $user->min_salary = trim($request->min_salary);
-        $user->max_salary = trim($request->max_salary);
+        $job->title = trim($request->title);
+        $job->description = trim($request->description);
+        $job->start_at = trim($request->start_at);
+        $job->end_at = trim($request->end_at);
 
-        $user->save();
+        $job->save();
+
+        if ($request->assign) {
+            JobAssignment::assignOrUpdateJob($request->assign, $job->id);
+        } else {
+            JobAssignment::assignOrUpdateJob(0, $job->id);
+        }
+
+
         return redirect('admin/jobs')->with('success', 'Việc Làm Sửa Thành Công');
     }
 
     public function delete($id)
     {
-        $recordDelete = JobsModel::find($id);
+        $recordDelete = Jobs::find($id);
         $recordDelete->delete();
         return redirect()->back()->with('error', 'Việc Làm Xóa Thành Công');
     }

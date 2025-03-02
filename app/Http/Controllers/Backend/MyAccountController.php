@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Auth;
-
-use Str;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class MyAccountController extends Controller
 {
@@ -20,26 +18,27 @@ class MyAccountController extends Controller
     public function edit_update(Request $request){
         //dd($request->all());
         $use = request()->validate([
+            'full_name' => 'required',
             'email' => 'required|unique:users,email,'.Auth::user()->id
         ]);
 
         $user = User::find(Auth::user()->id);
-        $user->name = trim($request->name);
+        $user->full_name = trim($request->full_name);
         $user->email = trim($request->email);
 
         if(!empty($request->password)){
             $user->password = trim($request->password);
         }
 
-        if (!empty($request->file('profile_image'))) {
-            if (!empty($user->profile_image) && file_exists('upload/' . $user->profile_image)) {
-                unlink('upload/' . $user->profile_image);
+        if (!empty($request->file('avatar'))) {
+            if (!empty($user->avatar) && file_exists('upload/' . $user->avatar)) {
+                unlink('upload/' . $user->avatar);
             }            
-            $file = $request->file('profile_image');
+            $file = $request->file('avatar');
             $randomStr = Str::random(30);
             $filename = $randomStr . '.' . $file->getClientOriginalExtension();
             $file->move('upload/', $filename);
-            $user->profile_image = $filename;
+            $user->avatar = $filename;
         }        
 
 

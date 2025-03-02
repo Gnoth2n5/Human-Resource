@@ -10,11 +10,11 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up() {
-        // Bảng job_grades (bậc công việc)
-        Schema::create('job_grades', function (Blueprint $table) {
+        // Bảng department
+        Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->string('grade_name');
-            $table->decimal('salary_multiplier', 5, 2); // Hệ số nhân lương
+            $table->string('name');
+            $table->string('location')->nullable();
             $table->timestamps();
         });
 
@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('avatar')->nullable();
             $table->rememberToken();
-            $table->foreignId('job_grade_id')->nullable()->constrained('job_grades')->onDelete('set null');
+            $table->foreignId('department_id')->nullable()->constrained('departments')->onDelete('set null');
             $table->timestamps();
         });
 
@@ -41,8 +41,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->enum('status', ['open', 'in_progress', 'completed'])->default('open');
-            $table->timestamp('start_at');
-            $table->timestamp('end_at');
+            $table->date('start_at');
+            $table->date('end_at');
             $table->timestamps();
         });
 

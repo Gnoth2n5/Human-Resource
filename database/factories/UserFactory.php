@@ -25,8 +25,8 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'phone_number' => fake()->phoneNumber(),
             'address' => fake()->address(),
-            'avatar' => fake()->imageUrl(),
-            'job_grade_id' => null,
+            'avatar' => null,
+            'department_id' => null,
             'uid' => Str::random(10),
         ];
     }

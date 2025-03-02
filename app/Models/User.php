@@ -42,11 +42,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    static public function getRecord()
+    public static function getRecord()
     {
-        // $return=self::select('users.*')->orderBy('id','desc')->paginate(20);
-        // return $return;
         $return = self::select('users.*');
+
+        // bỏ qua user admin
+        $return = $return->where('is_role', '!=', 1);
+
         //search box start
         if (!empty(request()->get('uid'))) {
             $return = $return->where('uid', '=', request()->get('uid'));
@@ -60,13 +62,53 @@ class User extends Authenticatable
             $return = $return->where('email', 'like', '%' . request()->get('email') . '%');
         }
         //search box end
-        $return = $return->orderBy('id', 'desc')->paginate(5);
+        $return = $return->orderBy('id', 'desc')->paginate(10);
         return $return;
-
     }
 
-    public function get_job_single(){
-        return $this->belongsTo(JobsModel::class, "job_id");
+    public static function saveUID($full_name, $id){
+        $user = self::find($id);
+        $user->uid = generateUID($full_name, $id);
+        $user->save();
     }
 
+
+    public static function get_user()
+    {
+        $return = self::with('department')
+            ->select('users.*')
+            ->where('is_role', '!=', 1)
+            ->orderBy('id', 'desc')
+            ->get()
+            ->map(fn ($i) => [
+                'id' => $i->id, // Giữ nguyên ID
+                'display' => $i->uid . ' - ' . $i->full_name . ' - ' .($i->department?->name ?? 'Chưa phân ban') 
+            ]);
+        return $return;
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id');
+    }
+
+    public function get_job_single()
+    {
+        return $this->belongsTo(Jobs::class, "job_id");
+    }
+
+    public function jobAssignments()
+    {
+        return $this->hasMany(JobAssignment::class);
+    }
+
+    public function salary()
+    {
+        return $this->hasOne(Salary::class);
+    }
+
+    public function salary_transactions()
+    {
+        return $this->hasMany(SalaryTransaction::class);
+    }
 }

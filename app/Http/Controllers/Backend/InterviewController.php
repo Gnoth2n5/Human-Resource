@@ -5,8 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Carbon\Carbon;
-use Auth;
-
+use Illuminate\Support\Facades\Auth;
 class InterviewController extends Controller
 {
     public function Interview(Request $request){

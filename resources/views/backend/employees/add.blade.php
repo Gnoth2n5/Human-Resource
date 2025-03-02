@@ -34,28 +34,29 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable">Họ và tên <span style="color: red">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" value="{{old('full_name')}}" name="full_name" class="form-cpntrol" required placeholder="Nhập họ và tên">
+                                    <input type="text" value="{{old('full_name')}}" name="full_name" class="form-control" required placeholder="Nhập họ và tên">
+                                    <span style="color: red">{{$errors->first('full_name')}}</span>
                                 </div>
                             </div>
                             
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable">Email <span style="color: red">*</span></label>
                                 <div class="col-sm-10"> 
-                                    <input type="email" value="{{old('email')}}" name="email" class="form-cpntrol" required placeholder="Nhập email">
+                                    <input type="email" value="{{old('email')}}" name="email" class="form-control" required placeholder="Nhập email">
                                 </div>
                                 <span style="color: red">{{$errors->first('email')}}</span>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable">Số điện thoại <span style="color: red"></span></label>
                                 <div class="col-sm-10">
-                                    <input type="number" value="{{old('phone_number')}}" name="phone_number" class="form-cpntrol"  placeholder="Nhập SDT">
+                                    <input type="number" value="{{old('phone_number')}}" name="phone_number" class="form-control"  placeholder="Nhập SDT">
                                 </div>
                                 <span style="color: red">{{$errors->first('phone_number')}}</span>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-lable">Địa chỉ <span style="color: red"></span></label>
                                 <div class="col-sm-10">
-                                    <input type="number" value="{{old('address')}}" name="address" class="form-cpntrol"  placeholder="Nhập địa chỉ">
+                                    <input type="text" value="{{old('address')}}" name="address" class="form-control"  placeholder="Nhập địa chỉ">
                                 </div>
                                 <span style="color: red">{{$errors->first('phone_number')}}</span>
                             </div>

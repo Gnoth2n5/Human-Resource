@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\PayrollModel;
 use App\Models\User;
+use App\Models\Salary;
 use App\Exports\PayrollExport;
+use App\Services\PayrollService;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Illuminate\Support\Facades\Storage;
@@ -14,81 +15,63 @@ class PayrollController extends Controller
 {
     public function index(Request $request)
     {
-        $data['getRecord'] = PayrollModel::getRecord();
+        $data['getRecord'] = Salary::getRecord();
         return view('backend.payroll.list', $data);
     }
 
-    public function payroll_export(Request $request)
-    {
-        $export = new PayrollExport();
-        return $export->export();
-    }
+    // public function payroll_export(Request $request)
+    // {
+    //     $export = new PayrollExport();
+    //     return $export->export();
+    // }
 
     public function add(Request $request)
     {
-        $data['getEmployee'] = User::where('is_role', '=', 0)->get();
+        $data['getEmployee'] = Salary::getEmployee();
         return view('backend.payroll.add', $data);
     }
 
-    public function insert_add(Request $request)
+    public function add_post(Request $request)
     {
-        $user = new PayrollModel();
-        $user->employee_id = trim($request->employee_id);
-        $user->number_of_day_work = trim($request->number_of_day_work);
-        $user->bonus = trim($request->bonus);
-        $user->overtime = trim($request->overtime);
-        $user->gross_salary = trim($request->gross_salary);
-        $user->cash_advance = trim($request->cash_advance);
-        $user->late_hours = trim($request->late_hours);
-        $user->absent_days = trim($request->absent_days);
-        $user->sss_contribution = trim($request->sss_contribution);
-        $user->philhealth = trim($request->philhealth);
-        $user->total_deductions = trim($request->total_deductions);
-        $user->netpay = trim($request->netpay);
-        $user->payroll_monthly = trim($request->payroll_monthly);
-        $user->save();
-
+        $salary = new Salary();
+        $salary->user_id = trim($request->employee_id);
+        $salary->base_salary = trim($request->base_salary);
+        $salary->save();
         return redirect('admin/payroll')->with('success', 'Payroll Added Successfully');
     }
 
     public function view($id)
     {
-        $data['getRecord'] = PayrollModel::find($id);
+        $data['getRecord'] = Salary::find($id);
         return view('backend.payroll.view', $data);
     }
 
     public function edit($id, Request $request)
     {
-        $data['getEmployee'] = User::where('is_role', '=', 0)->get();
-        $data['getRecord'] = PayrollModel::find($id);
+        $data['getRecord'] = Salary::with('user')->find($id);
         return view('backend.payroll.edit', $data);
     }
     
     public function update($id, Request $request)
     {
-        $user = PayrollModel::find($id);
-        $user->employee_id = trim($request->employee_id);
-        $user->number_of_day_work = trim($request->number_of_day_work);
-        $user->bonus = trim($request->bonus);
-        $user->overtime = trim($request->overtime);
-        $user->gross_salary = trim($request->gross_salary);
-        $user->cash_advance = trim($request->cash_advance);
-        $user->late_hours = trim($request->late_hours);
-        $user->absent_days = trim($request->absent_days);
-        $user->sss_contribution = trim($request->sss_contribution);
-        $user->philhealth = trim($request->philhealth);
-        $user->total_deductions = trim($request->total_deductions);
-        $user->netpay = trim($request->netpay);
-        $user->payroll_monthly = trim($request->payroll_monthly);
-        $user->save();
+        $salary = Salary::find($id);
+        $salary->base_salary = trim($request->base_salary);
+        $salary->save();
 
         return redirect('admin/payroll')->with('success', 'Payroll update Successfully');
     }
     
     public function delete($id)
     {
-        $recordDelete = PayrollModel::find($id);
+        $recordDelete = Salary::find($id);
         $recordDelete->delete();
         return redirect()->back()->with('error','Payroll delete Successfully');
+    }
+
+    public function caculate($id)
+    {
+        $service = new PayrollService();
+        $service->processPayroll($id, 0);
+        return redirect('admin/history-salary')->with('success', 'Payroll caculate Successfully');
     }
 }

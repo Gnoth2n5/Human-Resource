@@ -71,7 +71,7 @@
                                             <th>Họ tên</th>
                                             <th>Email</th>
                                             <th>Ảnh đại diện</th>
-                                            <th>Role</th>
+                                            <th>Phòng ban</th>
                                             <th>Hành động</th>
                                         </tr>
                                     </thead>
@@ -87,19 +87,23 @@
                                                     @if (!empty($value->avatar))
                                                         @if (file_exists(public_path('upload/' . $value->avatar)))
                                                             <img src="{{ url('upload/' . $value->avatar) }}"
-                                                                style="height: 80px; width: 80px;">
+                                                                style="height: 80px; width: 80px; object-fit: cover;" class="img-fluid">
                                                         @endif
+                                                    @else
+                                                        <img src="{{ url('upload/no-image.png') }}"
+                                                            style="height: 80px; width: 80px; object-fit: cover;" class="img-fluid">
                                                     @endif
                                                 </td>
-                                                <td>{{ !empty($value->is_role) ? 'HR' : 'Nhân viên' }}</td>
-
+                                                <td>
+                                                    {{ $value->department->name ?? 'Chưa có' }}
+                                                </td>
                                                 <td>
                                                     <a href="{{ url('admin/employees/view/' . $value->id) }}"
                                                         class="btn btn-info">Chi tiết</a>
                                                     <a href="{{ url('admin/employees/edit/' . $value->id) }}"
                                                         class="btn btn-primary">Sửa</a>
 
-                                                    <a href="{{ url('admin/employees/delete/.' . $value->id) }}"
+                                                    <a href="{{ url('admin/employees/delete/' . $value->id) }}"
                                                         onclick="return confirm('Bạn có chắc muốn xóa')"
                                                         class="btn btn-danger">Xoá</a>
 
