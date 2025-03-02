@@ -87,9 +87,9 @@
 
                         <div class="small-box bg-primary">
                             <div class="inner">
-                                <h5>Phòng ban: {{ $getDepartment->department->name }}</h5>
+                                <h5>Phòng ban: {{ $getDepartment->department->name ?? 'Chưa phân ban' }}</h5>
 
-                                <p>Vị trí: {{ $getDepartment->department->location }}</p>
+                                <p>Vị trí: {{ $getDepartment->department->location ?? 'N/A' }}</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-bag"></i>
