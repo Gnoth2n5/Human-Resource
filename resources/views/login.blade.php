@@ -30,7 +30,7 @@
         <div class="card">
             @include('_message')
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+                <p class="login-box-msg">Đăng nhập để bắt đầu phiên của bạn</p>
 
                 <form action="{{ url('login_post') }}" method="post">
 
@@ -49,15 +49,10 @@
                     
                     <!--begin::Row-->
                     <div class="row">
-                        <div class="col-8">
-                            <div class="form-check">
-
-                            </div>
-                        </div>
                         <!-- /.col -->
-                        <div class="col-4">
+                        <div class="col-12 mb-2">
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary">Sign In</button>
+                                <button type="submit" class="btn btn-primary">Đăng nhập</button>
                             </div>
                         </div>
                         <!-- /.col -->
@@ -66,9 +61,9 @@
                 </form>
 
                 <!-- /.social-auth-links -->
-                <p class="mb-1"><a href="{{ url('forgot-password') }}">I forgot my password</a></p>
+                {{-- <p class="mb-1"><a href="{{ url('forgot-password') }}">Quên mật khẩu</a></p> --}}
                 <p class="mb-0">
-                    <a href="{{ url('register') }}" class="text-center"> Register a new membership </a>
+                    <a href="{{ url('register') }}" class="text-center"> Đăng kí thành viên mới </a>
                 </p>
             </div>
             <!-- /.login-card-body -->

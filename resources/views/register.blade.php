@@ -31,7 +31,7 @@
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Register</p>
+                <p class="login-box-msg">Đăng ký</p>
                 <form action="{{ url('register_post') }}" method="post">
                     {{ csrf_field() }}
                     <div class="input-group mb-3">
@@ -67,7 +67,7 @@
                         <!-- /.col -->
                         <div class="col-4">
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary">Sign In</button>
+                                <button type="submit" class="btn btn-primary">Đăng kí</button>
                             </div>
                         </div>
                         <!-- /.col -->
@@ -76,9 +76,9 @@
                 </form>
 
                 <!-- /.social-auth-links -->
-                <p class="mb-1"><a href="{{ url('forgot-password') }}">I forgot my password</a></p>
+                {{-- <p class="mb-1"><a href="{{ url('forgot-password') }}">I forgot my password</a></p> --}}
                 <p class="mb-0">
-                    <a href="{{ url('/') }}" class="text-center"> SignIn </a>
+                    <a href="{{ url('/') }}" class="text-center"> Đăng nhập </a>
                 </p>
             </div>
             <!-- /.login-card-body -->
